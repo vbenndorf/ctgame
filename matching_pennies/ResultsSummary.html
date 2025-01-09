@@ -1,0 +1,26 @@
+{{ block title }}Final results{{ endblock }}
+{{ block content }}
+
+    <table class="table">
+        <tr>
+            <th>Round</th>
+            <th>Player</th>
+            <th>Payoff</th>
+            <th></th>
+        </tr>
+        {{ for p in player_in_all_rounds }}
+            <tr>
+                <td>{{ p.round_number }}</td>
+                <td>
+                  You were {{ p.role }}.
+                </td>
+                <td>{{ p.payoff }}</td>
+            </tr>
+        {{ endfor }}
+    </table>
+
+    <p>
+        Your total payoff is {{total_payoff}}.
+    </p>
+
+{{ endblock }}

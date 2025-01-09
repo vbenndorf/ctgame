@@ -1,0 +1,122 @@
+{% block title %}
+   <b style="color:grey"> Instructions: Structure of the Study </b>
+{% endblock %}
+
+{% block app_styles %}
+<style>
+
+th {
+    border: 1px solid black;
+    font-size: 10pt;
+    width: 200px;
+    text-align: center;
+    font-weight:bold;
+    background-color: lightgray;
+    }
+
+td {
+    font-size: 10pt;
+    border: 1px solid black;
+    text-align: center;
+    }
+
+table {
+    table-layout: fixed;
+    width: 600px;
+    }
+
+.history td {
+    font-size: 16pt;
+    }
+
+.history th {
+    font-size: 12pt;
+    width: 100px;
+    text-align: center;
+    }
+.frac > span {
+    display: block;
+    padding: 0.1em;
+}
+.frac span.bottom {
+    border-top: thin solid black;
+}
+.frac span.symbol {
+    display: none;
+}
+img {
+  border: 5px solid #888;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+  <b>Read these instructions carefully.</b> You will have to successfully answer some questions that check your understanding of the instructions before you can proceed on to the study.  If you have any questions let the instructor know.
+
+  <p></p>
+
+
+
+<b>Game description</b>:
+    <ul> <ul> 
+   <p></p>
+   <li>The structure of the game is illustrated below:
+   <br><br>
+      <img src=https://i.ibb.co/hmNcyPf/screenshot.png>
+   <br></li>
+   <p></p>
+
+   <li>
+   The top of the page indicates which round is currently being played.
+  </li>   
+  <p></p>
+
+  <li>
+   Underneath are the most important elements of the game described from left to right:
+      <ul>
+      <li>
+        To the left are the two elements that describe the progress of <b>time</b> in the game.
+      </li>
+      <li>
+        The remaining time starts at 60 seconds and ticks down until an action is chosen by either player.
+      </li>
+      <li>
+          After an action is chosen, the game time is stopped for 5 seconds. This is visualized by the 5s freeze time below the remaining time clock.
+      </li>
+      <li>
+        In the middle is the <b>payoff matrix</b> displayed. It contains the possible payoffs for both players and lets you choose between to possible actions.
+      </li>
+      <li>
+          You can choose between the actions <img src="https://i.ibb.co/K7xfQ99/heads-button.png" width="57" height="32" style="vertical-align:bottom; border:0"> and <img src="https://i.ibb.co/T4hY839/tails-button.png" width="57" height="32" style="vertical-align:bottom; border:0"> by clicking on the buttons inside the matrix
+      </li>
+      <li>
+          The payoffs you receive are colored red and your opponents black. For example, in the payoff matrix illustrated above, if you chose Tails and your opponent chooses Heads, your payoff would be <b style="color:red">8</b> and your opponents <b>2</b>.
+      </li>
+      <li>
+          On the right side is the <b>payoff percentage</b>. This is the percentage of the payoff that you will receive if the game has ended.
+      </li>
+      <li>
+       It decreases linearly with the reduction of the remaining time until you chose Heads or Tails. This reduction will be at 20% at the end of the game. (Note that it does not reduce during the 5s freeze time.)
+      </li>
+      </ul>
+  </li>
+  <p></p>
+
+  <li>
+   Underneath is the information about the payoff you receive if the time runs out before you chose Heads or Tails. (Note that this changes if your opponent chooses Heads or Tails during the game.)
+  </li>
+  <p></p>
+  <li>
+    The last element at the bottom is a timeline. This gives you the option to pre-plan a certain action (Heads or Tails) at specific time intervals (10s, 20s, 30s,...). This chosen action is only performed at that time if your opponent has not chosen Heads or Tails until that point in the game.
+  </li>
+  <p></p>
+
+  <li>
+    If both players chose an action or if the time has run out, the game is over and you can proceed to the next round by pressing the <img src="https://i.ibb.co/MgvBgbW/next-button.png" width="61" height="40" style="vertical-align:bottom; border:0"> button. The button will appear after the game concluded.
+  </li>
+  <p></p>
+<br>
+
+{{ next_button }}
+
+{% endblock %}

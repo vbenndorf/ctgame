@@ -1,0 +1,229 @@
+{{ block title }}Round {{ subsession.round_number }} of {{ C.NUM_ROUNDS }}{{ endblock }}
+
+{{ block content }}
+<p>
+    In this round, you are
+    {% if player.id_in_group == 1 %}
+    <span style="color:red">{{ player.role }}</span>.
+    {% else %}
+    <span style="color:blue">{{ player.role }}</span>.
+    {% endif %}
+</p>
+Below is the payoff matrix of the game illustrated.
+<p></p>
+<div id="start_matrix">
+     <table style="margin-left:auto;margin-right:auto;">
+        <tr>
+            <td rowspan="4" style="color:red";>Player 1</td>
+            <td colspan="3" style="color:blue";>Player 2 </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Heads</td>
+            <td>Tails</td>
+        </tr>
+        <tr>
+            <td>Heads</td>
+            <td><span style="color:red;">{{ C.A }}</span> , <span style="color:blue;">{{ C.B }}</span></td>
+            <td><span style="color:red;">{{ C.E }}</span> , <span style="color:blue;">{{ C.F }}</span></td>
+        </tr>
+        <tr>
+            <td>Tails</td>
+            <td><span style="color:red;">{{ C.C }}</span> , <span style="color:blue;">{{ C.D }}</span></td>
+            <td><span style="color:red;">{{ C.G }}</span> , <span style="color:blue;">{{ C.H }}</span></td>
+        </tr>
+    </table>
+</div>
+<p></p>
+<div id="stop_box" name="stop_box" class="box">
+    You may choose to preemptively determine an action taken automatically at a certain time in this round. If you do,
+    this action is automatically submitted at that time, but only if no player has taken an action until then. Do you wish
+    to submit an action automatically?
+    <div id="buttons" class="buttons" name="buttons" style="display: block">
+        <button type="button" onclick="button_yes()"  id="button1_1" class="button1"> Yes</button>
+        <button type="button" onclick="button_no()"  id="button2_1" class="button2"> No</button>
+        </div>
+</div>
+
+<div class="box2"  id="stop_move_box" style="display: none">
+    What action should automatically be taken?
+    <div id="stop_move_buttons" class="buttons" name="stop_move_choice">
+        <button type="button" onclick="button_heads()" id="button1_2" class="button1"> Heads</button>
+        <button type="button" onclick="button_tails()" id="button2_2" class="button2"> Tails</button>
+    </div>
+</div>
+
+<div class="box"  id="stop_time_box" style="display: none">
+    Please enter the time, at which the action should be taken if no player has moved at that point, below.    <br>
+    {{ formfield 'stop_time' }} <br>
+    Submit your answers and proceed by clicking the next button below.
+
+</div>
+
+
+
+
+<input type="hidden" name="stop" id="stop" />
+<input type="hidden" name="stop_move" id="stop_move" />
+<!--  <input type="hidden" name="stop_time" id="stop_time" />  -->
+<div id="submit_hide" style="display:none">
+<p></p><br>
+{% next_button %}
+</div>
+
+
+{{ endblock }}
+
+
+
+{% block script %}
+<script>
+
+function button_no(){
+    document.getElementById('submit_hide').style.display='inline';
+    document.getElementById('stop').value = false;
+    document.getElementById('stop_move').value = true;
+    document.getElementById('stop_box').style.display='none';
+}
+
+function button_yes(){
+    document.getElementById('stop_move_box').style.display='block';
+    document.getElementById('buttons').style.display='none';
+    document.getElementById('stop').value = true;
+
+}
+
+
+function button_heads(){
+    document.getElementById('stop_move').value = true;
+    document.getElementById('stop_time_box').style.display='block';
+    document.getElementById('button1_2').disabled=true;
+    document.getElementById('button2_2').disabled=true;
+    document.getElementById("button1_2").style.background='#d0d0d0';
+    document.getElementById('submit_hide').style.display='inline';
+}
+function button_tails(){
+    document.getElementById('stop_move').value = false;
+    document.getElementById('stop_time_box').style.display='block';
+    document.getElementById('button1_2').disabled=true;
+    document.getElementById('button2_2').disabled=true;
+    document.getElementById("button2_2").style.background='#d0d0d0';
+    document.getElementById('submit_hide').style.display='inline';
+}
+
+
+//document.getElementById('stop_time').value = 42;
+//document.getElementById('stop_move').value = true;
+</script>
+{% endblock %}
+
+
+{% block  app_styles %}
+<style>
+
+    .box {
+        padding: 10px;
+        border: 5px solid gray;
+        margin: 30px;
+    }
+
+    .box2 {
+        padding: 10px;
+        border: 5px solid gray;
+        margin: 30px;
+        text-align: center;
+
+    }
+
+    .buttons {
+        max-width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .button1 {
+      background-color: white;;
+      border: 2px solid #555555;
+      border-radius: 8px;
+      color: black;
+      padding: 0px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.2s;
+      cursor: pointer;
+      width: 100px;
+      height: 50px;
+    }
+
+    .button1:hover {
+      background-color: #e8e8e8;
+    }
+
+    .button1:disabled {
+        background-color: white;
+    }
+
+
+   .button2 {
+      background-color: white;;
+      border: 2px solid #555555;
+      border-radius: 8px;
+      color: black;
+      padding: 0px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.2s;
+      cursor: pointer;
+      width: 100px;
+      height: 50px;
+    }
+
+    .button2:hover {
+      background-color: #e8e8e8;
+    }
+
+    .button2:disabled {
+        background-color: white;
+    }
+
+    .timebar {
+      width: 100px;
+      height: 10px;
+      background-color: white;
+    }
+
+    .timebar.active-animation {
+        animation: anim1 5s 1 linear;
+    }
+
+    @keyframes anim1 {
+      from {background-color: green;}
+      to {background-color: red;
+            width: 0;}
+    }
+    @keyframes idle { 100% {}
+    }
+
+
+    table {
+        border: 1px solid black;
+    }
+
+    td {
+        border: 1px solid black;
+        background-color: white;
+        color: black;
+        font-weight: bold;
+        font-size: 19px;
+        padding: 3px 10px 3px 10px;
+        text-align: center;
+    }
+
+</style>
+{% endblock %}

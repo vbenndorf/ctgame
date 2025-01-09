@@ -1,0 +1,83 @@
+{% block title %}
+   <b style="color:grey">Introduction </b>
+{% endblock %}
+
+{% block app_styles %}
+<style>
+
+
+th {
+    border: 1px solid black;
+    font-size: 16pt;
+    width: 650px;
+    text-align: right;
+    font-weight:normal;
+    }
+
+td {
+    font-size: 14pt;
+    border: 1px solid black;
+    text-align: center;
+    }
+
+table {
+    table-layout: fixed;
+    width: 800px;
+    }
+
+.history td {
+    font-size: 16pt;
+    }
+
+.history th {
+    font-size: 12pt;
+    width: 100px;
+    text-align: center;
+    }
+     .frac {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    letter-spacing: 0.001em;
+    text-align: center;
+}
+.frac > span {
+    display: block;
+    padding: 0.1em;
+}
+.frac span.bottom {
+    border-top: thin solid black;
+}
+.frac span.symbol {
+    display: none;
+}
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+
+
+<p></p>
+  <h4>  Welcome to this experiment in games in continuous time.</h4>
+<p></p>
+
+<p>
+  The experiment you are about to participate in is part of a project funded by
+  DFG. It is used to analyze economic decision-making behavior.
+</p>
+
+During the experiment you are not allowed to use electronic devices or to
+communicate with other participants. Please use only the programs and
+functions intended for the experiment. Please do not talk to the other
+participants. If you have a question, please raise your hand. We will then come
+to you and answer your question in silence. Please do not ask your questions
+out loud. If the question is relevant for all participants, we will repeat it loudly
+and answer it. If you violate these rules, we must exclude you from the
+experiment and the payout.
+<p></p>
+<p></p>
+{{ next_button }}
+
+{% endblock%}

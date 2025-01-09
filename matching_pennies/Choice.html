@@ -1,0 +1,674 @@
+{{ block title }}Round {{ subsession.round_number }} of {{ C.NUM_ROUNDS }}{{ endblock }}
+{{ block content }}
+    <p>
+        In this round, you are
+        {% if player.id_in_group == 1 %}
+        <span style="color:red">{{ player.role }}</span>.
+        {% else %}
+        <span style="color:blue">{{ player.role }}</span>.
+        {% endif %}
+    </p>
+    <div id="timer_element">
+        Time left: <span id="timer" class="timer"></span>
+        <div id="timebar" class="timebar"></div>
+    </div>
+    <div id="game_over" style="display: none">
+        The game ended.
+    </div>
+
+    {% if player.id_in_group == 1 %}
+    <img src="https://i.ibb.co/5nRDG2Y/blue-op.jpg" width="100px" class="image_top"/>
+    {% else %}
+    <img src="https://i.ibb.co/M68rzkd/red-op.jpg" width="100px" class="image_top"/>
+    {% endif %}
+    <br>
+    <div id="start_matrix">
+     <table style="margin-left:auto;margin-right:auto;">
+        <tr>
+            <td rowspan="4" style="color:red";>Player 1</td>
+            <td colspan="3" style="color:blue";>Player 2 </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Heads</td>
+            <td>Tails</td>
+        </tr>
+        <tr>
+            <td>Heads</td>
+            <td><span style="color:red;" id="payoff_a"> </span> , <span style="color:blue;">{{ C.B }}</span></td>
+            <td><span style="color:red;">{{ C.E }}</span> , <span style="color:blue;">{{ C.F }}</span></td>
+        </tr>
+        <tr>
+            <td>Tails</td>
+            <td><span style="color:red;">{{ C.C }}</span> , <span style="color:blue;">{{ C.D }}</span></td>
+            <td><span style="color:red;">{{ C.G }}</span> , <span style="color:blue;">{{ C.H }}</span></td>
+        </tr>
+     </table>
+    </div>
+
+    <div id="matrix_p1_heads" style="display: none">
+         <table style="margin-left:auto;margin-right:auto;">
+            <tr>
+                <td rowspan="4" style="color:#ff5252";>Player 1</td>
+                <td colspan="3" style="color:blue";>Player 2 </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Heads</td>
+                <td>Tails</td>
+            </tr>
+            <tr>
+                <td style="background: #ff968f">Heads</td>
+                <td style="background: #ff968f"><span style="color:red;">{{ C.A }}</span> , <span style="color:blue;">{{ C.B }}</span></td>
+                <td style="background: #ff968f"><span style="color:red;">{{ C.E }}</span> , <span style="color:blue;">{{ C.F }}</span></td>
+            </tr>
+            <tr>
+                <td>Tails</td>
+                <td><span style="color:red;">{{ C.C }}</span> , <span style="color:blue;">{{ C.D }}</span></td>
+                <td><span style="color:red;">{{ C.G }}</span> , <span style="color:blue;">{{ C.H }}</span></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="matrix_p1_tails" style="display: none">
+         <table style="margin-left:auto;margin-right:auto;">
+            <tr>
+                <td rowspan="4" style="color:red";>Player 1</td>
+                <td colspan="3" style="color:blue";>Player 2 </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Heads</td>
+                <td>Tails</td>
+            </tr>
+            <tr>
+                <td>Heads</td>
+                <td><span style="color:red;">{{ C.A }}</span> , <span style="color:blue;">{{ C.B }}</span></td>
+                <td><span style="color:red;">{{ C.E }}</span> , <span style="color:blue;">{{ C.F }}</span></td>
+            </tr>
+            <tr>
+                <td style="background: #ff968f">Tails</td>
+                <td style="background: #ff968f"><span style="color:red;">{{ C.C }}</span> , <span style="color:blue;">{{ C.D }}</span></td>
+                <td style="background: #ff968f"><span style="color:red;">{{ C.G }}</span> , <span style="color:blue;">{{ C.H }}</span></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="matrix_p2_heads" style="display: none">
+         <table style="margin-left:auto;margin-right:auto;">
+            <tr>
+                <td rowspan="4" style="color:red";>Player 1</td>
+                <td colspan="3" style="color:blue";>Player 2 </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="background: #8f98ff">Heads</td>
+                <td>Tails</td>
+            </tr>
+            <tr>
+                <td>Heads</td>
+                <td style="background: #8f98ff"><span style="color:red;">{{ C.A }}</span> , <span style="color:blue;">{{ C.B }}</span></td>
+                <td><span style="color:red;">{{ C.E }}</span>, <span style="color:blue;">{{ C.F }}</span></td>
+            </tr>
+            <tr>
+                <td>Tails</td>
+                <td style="background: #8f98ff"><span style="color:red;">{{ C.C }}</span> , <span style="color:blue;">{{ C.D }}</span></td>
+                <td><span style="color:red;">{{ C.G }}</span> , <span style="color:blue;">{{ C.H }}</span></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="matrix_p2_tails" style="display: none">
+         <table style="margin-left:auto;margin-right:auto;">
+            <tr>
+                <td rowspan="4" style="color:red";>Player 1</td>
+                <td colspan="3" style="color:#8f98ff";>Player 2 </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Heads</td>
+                <td style="background: #8f98ff">Tails</td>
+            </tr>
+            <tr>
+                <td>Heads</td>
+                <td><span style="color:red;">{{ C.A }}</span> , <span style="color:blue;">{{ C.B }}</span></td>
+                <td style="background: #8f98ff"><span style="color:red;">{{ C.E }}</span> , <span style="color:blue;">{{ C.F }}</span></td>
+            </tr>
+            <tr>
+                <td>Tails</td>
+                <td><span style="color:red;">{{ C.C }}</span> , <span style="color:blue;">{{ C.D }}</span></td>
+                <td style="background: #8f98ff"><span style="color:red;">{{ C.G }}</span> , <span style="color:blue;">{{ C.H }}</span></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="matrix_heads_heads" style="display: none">
+         <table style="margin-left:auto;margin-right:auto;">
+            <tr>
+                <td rowspan="4" style="color:red";>Player 1</td>
+                <td colspan="3" style="color:blue";>Player 2 </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="background: #8f98ff">Heads</td>
+                <td>Tails</td>
+            </tr>
+            <tr>
+                <td style="background: #ff968f">Heads</td>
+                <td style="background: #cd97c1"><span style="color:red;">{{ C.A }}</span> , <span style="color:blue;">{{ C.B }}</span></td>
+                <td style="background: #ff968f"><span style="color:red;">{{ C.E }}</span> , <span style="color:blue;">{{ C.F }}</span></td>
+            </tr>
+            <tr>
+                <td>Tails</td>
+                <td style="background: #8f98ff"><span style="color:red;">{{ C.C }}</span> , <span style="color:blue;">{{ C.D }}</span></td>
+                <td><span style="color:red;">{{ C.G }}</span> , <span style="color:blue;">{{ C.H }}</span></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="matrix_tails_tails" style="display: none">
+         <table style="margin-left:auto;margin-right:auto;">
+            <tr>
+                <td rowspan="4" style="color:red";>Player 1</td>
+                <td colspan="3" style="color:blue";>Player 2 </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Heads</td>
+                <td style="background: #8f98ff">Tails</td>
+            </tr>
+            <tr>
+                <td>Heads</td>
+                <td><span style="color:red;">{{ C.A }}</span> , <span style="color:blue;">{{ C.B }}</span></td>
+                <td style="background: #8f98ff"><span style="color:red;">{{ C.E }}</span> , <span style="color:blue;">{{ C.F }}</span></td>
+            </tr>
+            <tr>
+                <td style="background: #ff968f">Tails</td>
+                <td style="background: #ff968f"><span style="color:red;">{{ C.C }}</span> , <span style="color:blue;">{{ C.D }}</span></td>
+                <td style="background: #cd97c1"><span style="color:red;">{{ C.G }}</span> , <span style="color:blue;">{{ C.H }}</span></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="matrix_heads_tails" style="display: none">
+         <table style="margin-left:auto;margin-right:auto;">
+            <tr>
+                <td rowspan="4" style="color:red";>Player 1</td>
+                <td colspan="3" style="color:blue";>Player 2 </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Heads</td>
+                <td style="background: #8f98ff">Tails</td>
+            </tr>
+            <tr>
+                <td style="background: #ff968f">Heads</td>
+                <td style="background: #ff968f"><span style="color:red;">{{ C.A }}</span> , <span style="color:blue;">{{ C.B }}</span></td>
+                <td style="background: #cd97c1"><span style="color:red;">{{ C.E }}</span> , <span style="color:blue;">{{ C.F }}</span></td>
+            </tr>
+            <tr>
+                <td>Tails</td>
+                <td><span style="color:red;">{{ C.C }}</span> , <span style="color:blue;">{{ C.D }}</span></td>
+                <td style="background: #8f98ff"><span style="color:red;">{{ C.G }}</span> , <span style="color:blue;">{{ C.H }}</span></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="matrix_tails_heads" style="display: none">
+         <table style="margin-left:auto;margin-right:auto;">
+            <tr>
+                <td rowspan="4" style="color:red";>Player 1</td>
+                <td colspan="3" style="color:blue";>Player 2 </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td style="background: #8f98ff">Heads</td>
+                <td>Tails</td>
+            </tr>
+            <tr>
+                <td>Heads</td>
+                <td style="background: #8f98ff"><span style="color:red;">{{ C.A }}</span> , <span style="color:blue;">{{ C.B }}</span></td>
+                <td><span style="color:red;">{{ C.E }}</span> , <span style="color:blue;">{{ C.F }}</span></td>
+            </tr>
+            <tr>
+                <td style="background: #ff968f">Tails</td>
+                <td style="background: #cd97c1"><span style="color:red;">{{ C.C }}</span> , <span style="color:blue;">{{ C.D }}</span></td>
+                <td style="background: #ff968f"><span style="color:red;">{{ C.G }}</span> , <span style="color:blue;">{{ C.H }}</span></td>
+            </tr>
+        </table>
+    </div>
+
+    <input type="hidden" name="time_of_move" id="time_of_move"/>
+    <input type="hidden" name="penny_side" id="penny_side"/>
+    <br>
+    <div class="wrapper"> <!-- buttons for choices -->
+        <div id="buttons" class="buttons" style="display: block">
+        <button id="button1" type="button" onclick="heads()" class="button1"> Heads</button>
+        <button id="button2" type="button" onclick="tails()" class="button2"> Tails</button>
+        </div>
+        {% if player.id_in_group == 1 %}
+            <img src="https://i.ibb.co/87vvL2D/red-pl.jpg" width="200px" class="image_bottom"/>
+            {% else %}
+            <img src="https://i.ibb.co/rkPp7hY/blue-pl.jpg" width="200px" class="image_bottom"/>
+        {% endif %}
+    </div>
+
+
+
+<div id="submit_hide" style="display:none"> <!-- div containing next button -->
+    <p></p><br>
+    {% next_button %}
+</div>
+
+{{ endblock }}
+
+
+
+{% block script %}
+<script>
+//Variables for liveSend
+var start_time = new Date().getTime();
+let first = true;
+choice1 = true;
+var button1 = document.getElementById('button1');
+var button2 = document.getElementById('button2');
+
+//live receive function
+function liveRecv(data) {
+    if (data['first']) {
+        first = false; //set fist flag to false for the second response
+        console.log("set first flag to false")
+        timer.pause();
+        document.getElementById('timebar').classList.add('active-animation');
+        setTimeout(function() { timer.resume(); }, 5000);
+        if (data['player'] == 1) {
+            if (data['penny_side']) {
+                choice1 = data['penny_side'];
+                console.log("p1 first heads");
+                document.getElementById("start_matrix").style.display = "none";
+                document.getElementById("matrix_p1_heads").style.display = "block";
+            } else {
+                choice1 = data['penny_side'];
+                console.log("p1 first tails");
+                document.getElementById("start_matrix").style.display = "none";
+                document.getElementById("matrix_p1_tails").style.display = "block";
+            }
+        console.log("choice1:" +  choice1);
+        }
+        if (data['player'] == 2) {
+            if (data['penny_side']) {
+                console.log("p2 first heads");
+                choice1 = data['penny_side'];
+                document.getElementById("start_matrix").style.display = "none";
+                document.getElementById("matrix_p2_heads").style.display = "block";
+            } else {
+                console.log("p2 first tails");
+                choice1 = data['penny_side'];
+                document.getElementById("start_matrix").style.display = "none";
+                document.getElementById("matrix_p2_tails").style.display = "block";
+            }
+        }
+
+    } else { //second
+            console.log("receive data:second!")
+            timer.pause();
+            document.getElementById("timer_element").style.display = "none";
+            document.getElementById("game_over").style.display = "block";
+            document.getElementById('submit_hide').style.display='inline';
+            if (data['penny_side']) { // heads (second move)
+                if(choice1) {
+                    document.getElementById("matrix_p1_heads").style.display = "none";
+                    document.getElementById("matrix_p2_heads").style.display = "none";
+                    document.getElementById("matrix_heads_heads").style.display = "block";
+                }
+                else {
+                    if(data['player'] == 1) {
+                        document.getElementById("matrix_p1_tails").style.display = "none";
+                        document.getElementById("matrix_p2_tails").style.display = "none";
+                        document.getElementById("matrix_heads_tails").style.display = "block";
+                    }
+                    if(data['player'] == 2) {
+                        document.getElementById("matrix_p1_tails").style.display = "none";
+                        document.getElementById("matrix_p2_tails").style.display = "none";
+                        document.getElementById("matrix_tails_heads").style.display = "block";
+                    }
+
+                }
+
+            } else { //tails (second move)
+                console.log("second choice: tails");
+                console.log("choice1: " + choice1);
+                if(choice1) { // first move was heads
+                    if(data['player'] == 1) {
+                        document.getElementById("matrix_p1_heads").style.display = "none";
+                        document.getElementById("matrix_p2_heads").style.display = "none";
+                        document.getElementById("matrix_tails_heads").style.display = "block";
+                    }
+                    if(data['player'] == 2) {
+                        document.getElementById("matrix_p1_heads").style.display = "none";
+                        document.getElementById("matrix_p2_heads").style.display = "none";
+                        document.getElementById("matrix_heads_tails").style.display = "block";
+                    }
+                }
+                else {
+                    document.getElementById("matrix_p1_tails").style.display = "none";
+                    document.getElementById("matrix_p2_tails").style.display = "none";
+                    document.getElementById("matrix_tails_tails").style.display = "block";
+                }
+            }
+        }
+
+}
+
+
+
+
+//Timeout
+function timeOut() {
+    document.getElementById("timer_element").style.display = "none";
+    document.getElementById("game_over").style.display = "block";
+    button1.disabled = true;
+    button2.disabled = true;
+    document.getElementById("buttons").style.visibility = "hidden"
+    document.getElementById('penny_side').value = true;
+    document.getElementById('time_of_move').value = 65001;
+    document.getElementById('submit_hide').style.display='inline';
+}
+
+// TIMER ON PAGE
+function startTimer(seconds, container, oncomplete) {
+    var startTime, timer, obj, ms = seconds*1000,
+        display = document.getElementById(container);
+    obj = {};
+    obj.resume = function() {
+        startTime = new Date().getTime();
+        timer = setInterval(obj.step,250); // adjust this number to affect granularity
+                            // lower numbers are more accurate, but more CPU-expensive
+    };
+    obj.pause = function() {
+        ms = obj.step();
+        clearInterval(timer);
+    };
+    obj.step = function() {
+        var now = Math.max(0,ms-(new Date().getTime()-startTime)),
+            m = Math.floor(now/60000), s = Math.floor(now/1000)%60;
+        s = (s < 10 ? "0" : "")+s;
+        display.innerHTML = m+":"+s;
+        if( now == 0) {
+            clearInterval(timer);
+            obj.resume = function() {};
+            if( oncomplete) oncomplete();
+        }
+        return now;
+    };
+    obj.resume();
+    return obj;
+}
+
+
+// start timer:
+var timer = startTimer(60, "timer", function() {timeOut()});
+
+
+
+// Dynamic payoffs// Dynamic payoffs// Dynamic payoffs// Dynamic payoffs// Dynamic payoffs// Dynamic payoffs
+function startFactor(seconds, delta, container, oncomplete) {
+    var startTime, timer, obj, ms = seconds*1000,
+        display = document.getElementById(container); //the html container where this is placed
+    obj = {};
+    obj.resume = function() {
+        startTime = new Date().getTime();
+        timer = setInterval(obj.step,100); // adjust this number to affect granularity
+                            // lower numbers are more accurate, but more CPU-expensive
+    };
+    obj.pause = function() {
+        ms = obj.step();
+        clearInterval(timer);
+    };
+    obj.step = function() {
+        var now = Math.max(0,ms-(new Date().getTime()-startTime)),
+            s = Math.floor(now/1000);
+        //s = (s < 10 ? "0" : "")+s;
+        var factor = 1-(1-delta)*((60-s)/60);
+        p = (Math.round(factor * 100) / 100).toFixed(2) + "%";
+        display.innerHTML = p;
+        if( now == 0) {
+            clearInterval(timer);
+            obj.resume = function() {};
+            if( oncomplete) oncomplete();
+        }
+        return now;
+    };
+    obj.resume();
+    return obj;
+}
+
+var factor = startFactor(60, 0.5, "factor", function() {timeOut()}); /// TODO: payoffs should used values from Constants C
+
+
+// Function to store time and choice in hidden formfield
+function heads(){
+    console.log("function heads:" + first);
+    button1.disabled = true;
+    button2.disabled = true;
+    document.getElementById("buttons").style.visibility = "hidden"
+    var choice = true;
+    var time_spent = Date.now() - start_time;
+    document.getElementById('time_of_move').value = time_spent;
+    document.getElementById('penny_side').value = choice;
+    if(first==true) {
+        liveSend({"penny_side": choice, "first": true})
+        console.log("first if cond:" + first);
+    }
+    else {
+        liveSend({"penny_side": choice, "first": false})
+    }
+}
+
+function tails(){
+    button1.disabled = true;
+    button2.disabled = true;
+    document.getElementById("buttons").style.visibility = "hidden"
+    var choice = false;
+    var time_spent = Date.now() - start_time;
+    document.getElementById('time_of_move').value = time_spent;
+    document.getElementById('penny_side').value = choice;
+    if(first==true) {
+        liveSend({"penny_side": choice, "first": true})
+    }
+    else {
+        liveSend({"penny_side": choice, "first": false})
+    }
+}
+
+
+
+//unilateral stop function
+function stop_function() {
+    console.log('unilateral_stop');
+    if(first){
+        if(js_vars.player_stop_move){
+            heads()
+        }
+        else{
+            tails()
+        }
+    }
+}
+
+// simultaneous stop function
+function simultaneous_stop_function() {
+    console.log('simultaneous_stop');
+    if(first){
+        var choice = js_vars.player_stop_move;
+        var time_spent = Date.now() - start_time;
+        document.getElementById('time_of_move').value = time_spent;
+        document.getElementById('penny_side').value = choice;
+        button1.disabled = true;
+        button2.disabled = true;
+        document.getElementById("buttons").style.visibility = "hidden"
+        document.getElementById("timer_element").style.display = "none";
+        document.getElementById("game_over").style.display = "block";
+        document.getElementById('submit_hide').style.display='inline';
+        document.getElementById("start_matrix").style.display = "none";
+
+        if(js_vars.player_stop_move){       //player chose heads
+            if(js_vars.opponent_stop_move){ // opponent chose heads
+                document.getElementById("matrix_heads_heads").style.display = "block";
+            }
+            else{ //opponent chose tails
+                if(js_vars.player_id == 1){
+                     document.getElementById("matrix_heads_tails").style.display = "block";
+                }
+                else{
+                    document.getElementById("matrix_tails_heads").style.display = "block";
+                }
+            }
+        }
+        else{ //player chose tails
+            if(js_vars.opponent_stop_move){ // opponent chose heads
+                if(js_vars.player_id == 1){
+                     document.getElementById("matrix_tails_heads").style.display = "block";
+                }
+                else{
+                    document.getElementById("matrix_heads_tails").style.display = "block";
+                }
+            }
+            else{ //opponent chose tails
+                document.getElementById("matrix_tails_tails").style.display = "block";
+            }//player chose tails
+
+        }
+    }
+}
+
+//Function for automatic stop:
+if(js_vars.player_stop){
+    if(js_vars.player_stop_move_simultaneous){
+        console.log('if: player has simultaneous stop');
+            setTimeout(simultaneous_stop_function,(js_vars.player_stop_time*1000)+1);
+    }
+    else{ //unilateral stop
+        console.log('if: player has unilateral stop');
+            setTimeout(stop_function,(js_vars.player_stop_time*1000)+1);
+    }
+}
+
+
+
+</script>
+{% endblock %}
+
+
+{% block  app_styles %}
+<style>
+
+    .wrapper {
+                position: relative;
+    }
+
+    .image_top {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .image_bottom {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      position: absolute;
+      z-index: -1;
+      top: 90%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .buttons {
+        position: relative;
+        max-width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+        z-index: 2;
+    }
+
+    .button1 {
+      background-color: white;;
+      border: 2px solid #555555;
+      border-radius: 8px;
+      color: black;
+      padding: 0px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.2s;
+      cursor: pointer;
+      width: 100px;
+      height: 50px;
+      opacity: 80%;
+    }
+
+    .button1:hover {
+      background-color: #e8e8e8;
+    }
+
+
+   .button2 {
+      background-color: white;;
+      border: 2px solid #555555;
+      border-radius: 8px;
+      color: black;
+      padding: 0px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.2s;
+      cursor: pointer;
+      width: 100px;
+      height: 50px;
+      opacity: 80%;
+    }
+
+    .button2:hover {
+      background-color: #e8e8e8;
+    }
+
+    .timebar {
+      width: 100px;
+      height: 10px;
+      background-color: white;
+    }
+
+    .timebar.active-animation {
+        animation: anim1 5s 1 linear;
+    }
+
+    @keyframes anim1 {
+      from {background-color: green;}
+      to {background-color: red;
+            width: 0;}
+    }
+    @keyframes idle { 100% {}
+    }
+
+
+    table {
+        border: 1px solid black;
+    }
+
+    td {
+        border: 1px solid black;
+        background-color: white;
+        color: black;
+        font-weight: bold;
+        font-size: 19px;
+        padding: 3px 10px 3px 10px;
+        text-align: center;
+    }
+
+</style>
+{% endblock %}

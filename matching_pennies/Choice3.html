@@ -1,0 +1,1650 @@
+{{ block title }}Round {{ subsession.round_number }} of {{ C.NUM_ROUNDS }}{{ endblock }}
+{{ block content }}
+<p>
+
+</p>
+
+    <div id="container">
+
+    <div id="timer_elements" class="timer_elements">
+            <div style="display: inline-block">
+               Remaining time:
+             <div id="outer-circle" class="outer-circle">
+              <div id="inner-circle">
+                    <span id="timer" class="timer" style="color:gray; display:inline"></span><br>
+              </div>
+            </div>
+            </div>
+
+            <br>
+            <div style="display: inline-block">
+                <span style="margin-right: 10px">
+                   5s freeze time:
+                </span>
+                <div id="timebar_frame" class="timebar_frame">
+                <div id="timebar" class="timebar"></div>
+            </div>
+            </div>
+
+    </div>
+
+
+        <div id="tables">
+
+           <div id="payoff_matrix_1_start" style="display:none">
+             <table style="margin-left:auto;margin-right:auto;">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td></td>
+                    <td id="tbl1_b1_start">Heads</td>
+                    <td id="tbl1_c1_start">Tails</td>
+                </tr>
+                <tr>
+                    <th rowspan="2" style="color:red">You</th>
+                    <td id="tbl1_a2_start">
+                        <button id="button1_1_start" type="button" onclick="heads()" class="button1"> Heads</button>
+                        <span id="heads_text_1_start" class="button_replacement" style="color:red; display:none">Heads</span>
+                    </td>
+                    <td id="tbl1_b2_start"><span style="color:red" id="tbl1_b2text_start">{{ C.B_eps }}</span> , <span>{{ C.C }}</span></td>
+                    <td id="tbl1_c2_start"><span style="color:red" id="tbl1_c2text_start">{{ C.C }}</span> , <span>{{ C.B }}</span></td>
+                </tr>
+                <tr>
+                    <td id="tbl1_a3_start">
+                        <button id="button2_1_start" type="button" onclick="tails()" class="button2"> Tails</button>
+                        <span id="tails_text_1_start" class="button_replacement" style="color:red; display:none">Tails</span>
+                    </td>
+                    <td id="tbl1_b3_start"><span style="color:red;" id="tbl1_b3text_start">{{ C.C }}</span> , <span>{{ C.B }}</span></td>
+                    <td id="tbl1_c3_start"><span style="color:red;" id="tbl1_c3text_start">{{ C.B }}</span> , <span>{{ C.C }}</span></td>
+                </tr>
+             </table>
+            </div>
+
+           <div id="payoff_matrix_1" style="display:none">
+             <table style="margin-left:auto;margin-right:auto;">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td></td>
+                    <td id="tbl1_b1">Heads</td>
+                    <td id="tbl1_c1">Tails</td>
+                </tr>
+                <tr>
+                    <th rowspan="2" style="color:red">You</th>
+                    <td id="tbl1_a2">
+                        <button id="button1_1" type="button" onclick="heads()" class="button1"> Heads</button>
+                        <span id="heads_text_1" class="button_replacement" style="color:red; display:none">Heads</span>
+                    </td>
+                    <td id="tbl1_b2"><span style="color:red" id="tbl1_b2text">{{ C.B_eps }}</span> , <span>{{ C.C }}</span></td>
+                    <td id="tbl1_c2"><span style="color:red" id="tbl1_c2text">{{ C.C }}</span> , <span>{{ C.B }}</span></td>
+                </tr>
+                <tr>
+                    <td id="tbl1_a3">
+                        <button id="button2_1" type="button" onclick="tails()" class="button2"> Tails</button>
+                        <span id="tails_text_1" class="button_replacement" style="color:red; display:none">Tails</span>
+                    </td>
+                    <td id="tbl1_b3"><span style="color:red;" id="tbl1_b3text">{{ C.C }}</span> , <span>{{ C.B }}</span></td>
+                    <td id="tbl1_c3"><span style="color:red;" id="tbl1_c3text">{{ C.B }}</span> , <span>{{ C.C }}</span></td>
+                </tr>
+             </table>
+            </div>
+
+            <div id="payoff_matrix_2_start" style="display:none">
+             <table style="margin-left:auto;margin-right:auto;">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td></td>
+                    <td id="tbl2_b1_start">Heads</td>
+                    <td id="tbl2_c1_start">Tails</td>
+                </tr>
+                <tr>
+                    <th rowspan="2" style="color:red">You</th>
+                    <td id="tbl2_a2_start">
+                        <button id="button1_2_start" type="button" onclick="heads()" class="button1"> Heads</button>
+                        <span id="heads_text_2_start" class="button_replacement" style="color:red; display:none">Heads</span>
+                    </td>
+                    <td id="tbl2_b2_start"><span style="color:red;" id="tbl2_b2text_start">{{ C.C }}</span> , <span>{{ C.B_eps }}</span></td>
+                    <td id="tbl2_c2_start"><span style="color:red;" id="tbl2_c2text_start">{{ C.B }}</span> , <span>{{ C.C }}</span></td>
+                </tr>
+                <tr>
+                    <td id="tbl2_a3_start">
+                        <button id="button2_2_start" type="button" onclick="tails()" class="button2"> Tails</button>
+                        <span id="tails_text_2_start" class="button_replacement" style="color:red; display:none">Tails</span>
+                    </td>
+                    <td id="tbl2_b3_start"><span style="color:red;" id="tbl2_b3text_start">{{ C.B }}</span> , <span>{{ C.C }}</span></td>
+                    <td id="tbl2_c3_start"><span style="color:red;" id="tbl2_c3text_start">{{ C.C }}</span> , <span>{{ C.B }}</span></td>
+                </tr>
+             </table>
+            </div>
+
+
+             <div id="payoff_matrix_2" style="display:none">
+             <table style="margin-left:auto;margin-right:auto;">
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th colspan="2">Opponent</th>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td></td>
+                    <td id="tbl2_b1">Heads</td>
+                    <td id="tbl2_c1">Tails</td>
+                </tr>
+                <tr>
+                    <th rowspan="2" style="color:red">You</th>
+                    <td id="tbl2_a2">
+                        <button id="button1_2" type="button" onclick="heads()" class="button1"> Heads</button>
+                        <span id="heads_text_2" class="button_replacement" style="color:red; display:none">Heads</span>
+                    </td>
+                    <td id="tbl2_b2"><span style="color:red;" id="tbl2_b2text">{{ C.C }}</span> , <span>{{ C.B_eps }}</span></td>
+                    <td id="tbl2_c2"><span style="color:red;" id="tbl2_c2text">{{ C.B }}</span> , <span>{{ C.C }}</span></td>
+                </tr>
+                <tr>
+                    <td id="tbl2_a3">
+                        <button id="button2_2" type="button" onclick="tails()" class="button2"> Tails</button>
+                        <span id="tails_text_2" class="button_replacement" style="color:red; display:none">Tails</span>
+                    </td>
+                    <td id="tbl2_b3"><span style="color:red;" id="tbl2_b3text">{{ C.B }}</span> , <span>{{ C.C }}</span></td>
+                    <td id="tbl2_c3"><span style="color:red;" id="tbl2_c3text">{{ C.C }}</span> , <span>{{ C.B }}</span></td>
+                </tr>
+             </table>
+            </div>
+        </div>
+
+
+    <div>
+       Payoff percentage:
+        <br>
+       <div id="lower-circle" class="lower-circle">
+          <span id="factor" class="factor"></span>
+      </div>
+    </div>
+
+
+    </div>
+
+    <input type="hidden" name="time_of_move" id="time_of_move"/>
+    <input type="hidden" name="penny_side" id="penny_side"/>
+    <input type="hidden" name="move_in_beginning" id="move_in_beginning"/>
+    <input type="hidden" name="time_out" id="time_out"/>
+    <input type="hidden" name="stop" id="stop"/>
+    <input type="hidden" name="stop_time" id="stop_time"/>
+    <input type="hidden" name="simultaneous" id="simultaneous"/>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<p>
+    <span id="endgame_start">
+        If neither player chooses heads or tails before the game ends, your payoff is {% if player.id_in_group == 1 %}
+        <b style="color:red">1.12</b>{% else %}<b style="color:red">1</b>{% endif %}.</span>
+    <span id="endgame_moved_heads" style="display: none">
+        If you do not choose heads or tails before the game ends, your payoff is {% if player.id_in_group == 1 %}
+        <b style="color:red">1.2</b>{% else %}<b style="color:red">1.16</b>{% endif %}.
+    </span>
+    <span id="endgame_moved_tails" style="display: none">
+        If you do not choose heads or tails before the game ends, your payoff is {% if player.id_in_group == 1 %}
+        <b style="color:red">1</b>{% else %}<b style="color:red">0.88</b>{% endif %}.
+    </span>
+</p>
+
+<br>
+
+<div id="timeline" style="display: inline-block">
+    <div id="timeline_checkboxes">
+        <div style="display: inline-block">
+          <input type="checkbox" id="heads1" name="heads1" class="checkbox" value="Heads" onclick="validate_heads(1)">
+          <label for="heads1" id="heads1_label"> Heads</label><br>
+          <input type="checkbox" id="tails1" name="tails1" class="checkbox" value="Tails" onclick="validate_tails(1)">
+          <label for="tails1" id="tails1_label"> Tails</label>
+
+        </div>
+
+        <div style="display: inline-block">
+          <input type="checkbox" id="heads2" name="heads2" class="checkbox" value="Heads" onclick="validate_heads(2)">
+          <label for="heads2" id="heads2_label"> Heads</label><br>
+          <input type="checkbox" id="tails2" name="tails2" class="checkbox" value="Tails" onclick="validate_tails(2)">
+          <label for="tails2" id="tails2_label"> Tails</label>
+        </div>
+
+            <div style="display: inline-block">
+          <input type="checkbox" id="heads3" name="heads3" class="checkbox" value="Heads" onclick="validate_heads(3)">
+          <label for="heads3" id="heads3_label"> Heads</label><br>
+          <input type="checkbox" id="tails3" name="tails3" class="checkbox" value="Tails" onclick="validate_tails(3)">
+          <label for="tails3" id="tails3_label"> Tails</label>
+        </div>
+
+            <div style="display: inline-block">
+          <input type="checkbox" id="heads4" name="heads4" class="checkbox" value="Heads" onclick="validate_heads(4)">
+          <label for="heads4" id="heads4_label"> Heads</label><br>
+          <input type="checkbox" id="tails4" name="tails4" class="checkbox" value="Tails" onclick="validate_tails(4)">
+          <label for="tails4" id="tails4_label"> Tails</label>
+        </div>
+
+            <div style="display: inline-block">
+          <input type="checkbox" id="heads5" name="heads5" class="checkbox" value="Heads" onclick="validate_heads(5)">
+          <label for="heads5" id="heads5_label"> Heads</label><br>
+          <input type="checkbox" id="tails5" name="tails5" class="checkbox" value="Tails" onclick="validate_tails(5)">
+          <label for="tails5" id="tails5_label"> Tails</label>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div id="submit" style="display:none"> <!-- div containing next button -->
+    <p></p>
+    {% next_button %}
+</div>
+
+{{ endblock }}
+
+
+{% block script %}
+<script>
+var start_time = new Date().getTime(); //time at the start of the page; used for time measurements
+let first = true; //checks for first move
+choice1 = true; //variable for the first action
+var game_over = false; // flag if the game has ended or not
+//variables for all buttons:
+var button1_1 = document.getElementById('button1_1');
+var button2_1 = document.getElementById('button2_1');
+var button1_1_start = document.getElementById('button1_1_start');
+var button2_1_start = document.getElementById('button2_1_start');
+var button1_2 = document.getElementById('button1_2');
+var button2_2 = document.getElementById('button2_2');
+var button1_2_start = document.getElementById('button1_2_start');
+var button2_2_start = document.getElementById('button2_2_start');
+
+var stop = false;
+var stop_time = 0;
+var simultaneous = false;
+
+timer = startTimer(60, "timer", function() {timeOut()}); //timer object
+factor = startFactor(60, 0.2, "factor", function() {}); //payoff factor object
+
+document.getElementById("outer-circle").style.background = "#696969";
+document.getElementById("timer").style.color = "#696969";
+
+pause_beginning = timer.pause(); //pause at the beginning
+pause_beginning_factor = factor.pause(); //pause factor at beginning
+pause_timer_started = true; // flag if the timer is paused
+beginning_timer = true; // flag if in the first 5s of the game
+pause_first_flag = false; //flag for pause after first move
+move_in_beginning = false; // flag if one move is done in the beginning phase
+i_moved = false; //flag if this player has moved already
+
+//displays the correct start matrix for each player
+if(js_vars.player_id == 1){
+    document.getElementById("payoff_matrix_1_start").style.display = "block";
+}
+
+if(js_vars.player_id == 2){
+    document.getElementById("payoff_matrix_2_start").style.display = "block";
+}
+
+//checkbox booleans
+p1_heads_checkbox_array = [false, false, false, false, false];
+p1_tails_checkbox_array = [false, false, false, false, false];
+p2_heads_checkbox_array = [false, false, false, false, false];
+p2_tails_checkbox_array = [false, false, false, false, false];
+
+
+//end of stop function
+const end_of_stop = function() {
+                        document.getElementById('timebar').classList.remove('active-animation'); //remove animation after 5 seconds
+                        if(game_over == false){ //not both players have moved after initial pause
+                            document.getElementById("outer-circle").style.background = "#159421";
+                            document.getElementById("timer").style.color = "#159421";
+                            timer.resume();
+                            if(!i_moved){
+                                factor.resume();
+                            }
+                        }
+                        pause_timer_started=false;
+                        }
+
+
+//5sec stop time at beginning:
+document.getElementById('timebar').classList.add('active-animation'); //run stop animation
+setTimeout(function(){
+    if(game_over) { // both players moved in the beginning
+        document.getElementById('simultaneous').value = true;
+        document.getElementById('submit').style.display='inline';
+        document.getElementById("outer-circle").style.background = "#696969";
+        document.getElementById("timer").style.color = "#696969";
+        document.getElementById("timebar").style.display = "none"
+    }
+
+    if(js_vars.player_id == 1) {
+        document.getElementById("payoff_matrix_1_start").style.display = "none";
+        document.getElementById("payoff_matrix_1").style.display = "block";
+    }
+    if(js_vars.player_id == 2) {
+        document.getElementById("payoff_matrix_2_start").style.display = "none";
+        document.getElementById("payoff_matrix_2").style.display = "block";
+    }
+    end_of_stop();
+    beginning_timer = false;
+},5000);
+
+//preprogrammed moves:
+//10seconds:
+setTimeout(function(){
+    if(!game_over){
+        deactivate_checkbox(1);
+        setTimeout(function(){
+                if(!game_over){
+                   heads1 = p1_heads_checkbox_array[0];
+                   tails1 = p1_tails_checkbox_array[0];
+                   heads2 = p2_heads_checkbox_array[0];
+                   tails2 = p2_tails_checkbox_array[0];
+                   if((heads1 || tails1)||(heads2 || tails2)) {
+                        preprogrammed_move(1);
+                    }
+                }
+            },500);
+        }
+    }, 14500);
+//20seconds
+setTimeout(function(){
+    if(!game_over){
+        deactivate_checkbox(2);
+        setTimeout(function(){
+                if(!game_over){
+                   heads1 = p1_heads_checkbox_array[1];
+                   tails1 = p1_tails_checkbox_array[1];
+                   heads2 = p2_heads_checkbox_array[1];
+                   tails2 = p2_tails_checkbox_array[1];
+                   if((heads1 || tails1)||(heads2 || tails2)) {
+                        preprogrammed_move(2);
+                    }
+                }
+            },500);
+        }
+    }, 24500);
+//30seconds
+setTimeout(function(){
+    if(!game_over){
+        deactivate_checkbox(3);
+        setTimeout(function(){
+                if(!game_over){
+                   heads1 = p1_heads_checkbox_array[2];
+                   tails1 = p1_tails_checkbox_array[2];
+                   heads2 = p2_heads_checkbox_array[2];
+                   tails2 = p2_tails_checkbox_array[2];
+                   if((heads1 || tails1)||(heads2 || tails2)) {
+                        preprogrammed_move(3);
+                    }
+                }
+            },500);
+        }
+    }, 34500);
+//40seconds
+setTimeout(function(){
+    if(!game_over){
+        deactivate_checkbox(4);
+        setTimeout(function(){
+                if(!game_over){
+                   heads1 = p1_heads_checkbox_array[3];
+                   tails1 = p1_tails_checkbox_array[3];
+                   heads2 = p2_heads_checkbox_array[3];
+                   tails2 = p2_tails_checkbox_array[3];
+                   if((heads1 || tails1)||(heads2 || tails2)) {
+                        preprogrammed_move(4);
+                    }
+                }
+            },500);
+        }
+    }, 44500);
+//50seconds
+setTimeout(function(){
+    if(!game_over){
+        deactivate_checkbox(5);
+        setTimeout(function(){
+                if(!game_over){
+                   heads1 = p1_heads_checkbox_array[4];
+                   tails1 = p1_tails_checkbox_array[4];
+                   heads2 = p2_heads_checkbox_array[4];
+                   tails2 = p2_tails_checkbox_array[4];
+                   if((heads1 || tails1)||(heads2 || tails2)) {
+                        preprogrammed_move(5);
+                    }
+                }
+            },500);
+        }
+    }, 54500);
+
+//additional stop after beginning stop, if one move was made
+setTimeout(function(){ //5.005 seconds after the game starts, check if a move in the beginning pause was made and the game is not over
+    if(game_over == false){
+        if(move_in_beginning){
+            document.getElementById('timebar').classList.remove('active-animation'); //additional pause after first pause
+            pause_first = timer.pause();
+            if(!i_moved){
+                document.getElementById("endgame_start").style.display='none';
+                pause_first_factor = factor.pause();
+                if(choice1){
+                    document.getElementById("endgame_moved_heads").style.display='inline';
+                }
+                else{
+                    document.getElementById("endgame_moved_tails").style.display='inline';
+                }
+            }
+            else{
+                    document.getElementById("endgame_start").style.visibility='hidden';
+            }
+            pause_first_flag = true;
+            pause_timer_started = true;
+            document.getElementById("outer-circle").style.background = "#696969";
+            document.getElementById("timer").style.color = "#696969";
+            deactivate_checkbox(1);
+            deactivate_checkbox(2);
+            deactivate_checkbox(3);
+            deactivate_checkbox(4);
+            deactivate_checkbox(5);
+            setTimeout(function(){document.getElementById('timebar').classList.add('active-animation');},5)
+            setTimeout(function(){
+                            end_of_stop();
+                            pause_first_flag = false;
+                                }, 5000);
+        }
+        else{
+            //setTimeout(function(){preprogrammed_move(1)}, 9990);
+        }
+    }
+}, 5005);
+
+
+
+//live receive function
+function liveRecv(data) {
+    if(data['type'] == 'checkbox'){
+        //console.log(data)
+        if(data['player'] == 1){
+            if(data['penny_side'] == 'heads'){
+                p1_heads_checkbox_array[data['num']-1] = data['check'];
+            }
+            if(data['penny_side'] == 'tails'){
+                p1_tails_checkbox_array[data['num']-1] = data['check'];
+            }
+          }
+        if(data['player'] == 2){
+            if(data['penny_side'] == 'heads'){
+                p2_heads_checkbox_array[data['num']-1] = data['check'];
+            }
+            if(data['penny_side'] == 'tails'){
+                p2_tails_checkbox_array[data['num']-1] = data['check'];
+            }
+          }
+        }
+
+    if (data['type'] == 'button'){
+        if (data['first']) {
+            first = false; //set fist flag to false for the second response
+            console.log("set first flag to false")
+            if(beginning_timer == false){
+                    pause_first = timer.pause();
+                    factor.pause();
+                    pause_first_flag = true;
+                    pause_timer_started = true;
+                    document.getElementById('timebar').classList.add('active-animation');
+                    document.getElementById("outer-circle").style.background = "#696969";
+                    document.getElementById("timer").style.color = "#696969";
+                    deactivate_checkbox(1);
+                    deactivate_checkbox(2);
+                    deactivate_checkbox(3);
+                    deactivate_checkbox(4);
+                    deactivate_checkbox(5);
+                    if(i_moved){
+                        document.getElementById("endgame_start").style.visibility='hidden';
+                    }
+                    else{
+                        document.getElementById("endgame_start").style.display='none';
+                        if(choice1){
+                            document.getElementById("endgame_moved_heads").style.display='inline';
+                        }
+                        else{
+                            document.getElementById("endgame_moved_tails").style.display='inline';
+                        }
+                    }
+
+                    setTimeout(function() {
+                        if(game_over==false){
+                            end_of_stop();
+                            pause_first_flag = false;
+                            }
+                        }, 5000);
+            }
+            else{
+                move_in_beginning = true;
+            }
+
+            if (data['player'] == 1) {
+                if (data['penny_side']) {
+                    choice1 = data['penny_side'];
+                    console.log("p1 first heads");
+
+                    document.getElementById('tbl1_a2').style.backgroundColor='#f0c0c0';
+                    document.getElementById('tbl1_b2').style.backgroundColor='#f0c0c0';
+                    document.getElementById('tbl1_c2').style.backgroundColor='#f0c0c0';
+                    document.getElementById('tails_text_1').style.color='#858585';
+                    document.getElementById('tbl1_b3').style.color='#858585';
+                    document.getElementById('tbl1_b3text').style.color='#858585';
+                    document.getElementById('tbl1_c3').style.color='#858585';
+                    document.getElementById('tbl1_c3text').style.color='#858585';
+                    document.getElementById('tbl1_a2_start').style.backgroundColor='#f0c0c0';
+                    document.getElementById('tbl1_b2_start').style.backgroundColor='#f0c0c0';
+                    document.getElementById('tbl1_c2_start').style.backgroundColor='#f0c0c0';
+                    document.getElementById('tails_text_1_start').style.color='#858585';
+                    document.getElementById('tbl1_b3_start').style.color='#858585';
+                    document.getElementById('tbl1_b3text_start').style.color='#858585';
+                    document.getElementById('tbl1_c3_start').style.color='#858585';
+                    document.getElementById('tbl1_c3text_start').style.color='#858585';
+
+                    document.getElementById('tbl2_c1').style.color='#858585';
+                    document.getElementById('tbl2_c2').style.color='#858585';
+                    document.getElementById('tbl2_c2text').style.color='#858585';
+                    document.getElementById('tbl2_c3').style.color='#858585';
+                    document.getElementById('tbl2_c3text').style.color='#858585';
+                    document.getElementById('tbl2_b1').style.borderTopWidth = "4px";
+                    document.getElementById('tbl2_b1').style.borderRightWidth = "4px";
+                    document.getElementById('tbl2_b1').style.borderLeftWidth = "4px";
+                    document.getElementById('tbl2_b2').style.borderRightWidth = "4px";
+                    document.getElementById('tbl2_b2').style.borderLeftWidth = "4px";
+                    document.getElementById('tbl2_b3').style.borderRightWidth = "4px";
+                    document.getElementById('tbl2_b3').style.borderLeftWidth = "4px";
+                    document.getElementById('tbl2_b3').style.borderBottomWidth = "4px";
+
+                } else {
+                    choice1 = data['penny_side'];
+                    console.log("p1 first tails");
+
+                    document.getElementById('tbl1_a3').style.backgroundColor='#f0c0c0';
+                    document.getElementById('tbl1_b3').style.backgroundColor='#f0c0c0';
+                    document.getElementById('tbl1_c3').style.backgroundColor='#f0c0c0';
+                    document.getElementById('heads_text_1').style.color='#858585';
+                    document.getElementById('tbl1_b2').style.color='#858585';
+                    document.getElementById('tbl1_b2text').style.color='#858585';
+                    document.getElementById('tbl1_c2').style.color='#858585';
+                    document.getElementById('tbl1_c2text').style.color='#858585';
+                    document.getElementById('tbl1_a3_start').style.backgroundColor='#f0c0c0';
+                    document.getElementById('tbl1_b3_start').style.backgroundColor='#f0c0c0';
+                    document.getElementById('tbl1_c3_start').style.backgroundColor='#f0c0c0';
+                    document.getElementById('heads_text_1_start').style.color='#858585';
+                    document.getElementById('tbl1_b2_start').style.color='#858585';
+                    document.getElementById('tbl1_b2text_start').style.color='#858585';
+                    document.getElementById('tbl1_c2_start').style.color='#858585';
+                    document.getElementById('tbl1_c2text_start').style.color='#858585';
+
+                    document.getElementById('tbl2_b1').style.color='#858585';
+                    document.getElementById('tbl2_b2').style.color='#858585';
+                    document.getElementById('tbl2_b2text').style.color='#858585';
+                    document.getElementById('tbl2_b3').style.color='#858585';
+                    document.getElementById('tbl2_b3text').style.color='#858585';
+                    document.getElementById('tbl2_c1').style.borderTopWidth = "4px";
+                    document.getElementById('tbl2_c1').style.borderRightWidth = "4px";
+                    document.getElementById('tbl2_c1').style.borderLeftWidth = "4px";
+                    document.getElementById('tbl2_c2').style.borderRightWidth = "4px";
+                    document.getElementById('tbl2_c2').style.borderLeftWidth = "4px";
+                    document.getElementById('tbl2_c3').style.borderRightWidth = "4px";
+                    document.getElementById('tbl2_c3').style.borderLeftWidth = "4px";
+                    document.getElementById('tbl2_c3').style.borderBottomWidth = "4px";
+                }
+            console.log("choice1:" +  choice1);
+            }
+            if (data['player'] == 2) {
+                if (data['penny_side']) {
+                    console.log("p2 first heads");
+                    choice1 = data['penny_side'];
+
+                    document.getElementById('tbl2_a2').style.backgroundColor='#f0c0c0';
+                    document.getElementById('tbl2_b2').style.backgroundColor='#f0c0c0';
+                    document.getElementById('tbl2_c2').style.backgroundColor='#f0c0c0';
+                    document.getElementById('tails_text_2').style.color='#858585';
+                    document.getElementById('tbl2_b3').style.color='#858585';
+                    document.getElementById('tbl2_b3text').style.color='#858585';
+                    document.getElementById('tbl2_c3').style.color='#858585';
+                    document.getElementById('tbl2_c3text').style.color='#858585';
+                    document.getElementById('tbl2_a2_start').style.backgroundColor='#f0c0c0';
+                    document.getElementById('tbl2_b2_start').style.backgroundColor='#f0c0c0';
+                    document.getElementById('tbl2_c2_start').style.backgroundColor='#f0c0c0';
+                    document.getElementById('tails_text_2_start').style.color='#858585';
+                    document.getElementById('tbl2_b3_start').style.color='#858585';
+                    document.getElementById('tbl2_b3text_start').style.color='#858585';
+                    document.getElementById('tbl2_c3_start').style.color='#858585';
+                    document.getElementById('tbl2_c3text_start').style.color='#858585';
+
+                    document.getElementById('tbl1_c1').style.color='#858585';
+                    document.getElementById('tbl1_c2').style.color='#858585';
+                    document.getElementById('tbl1_c2text').style.color='#858585';
+                    document.getElementById('tbl1_c3').style.color='#858585';
+                    document.getElementById('tbl1_c3text').style.color='#858585';
+                    document.getElementById('tbl1_b1').style.borderTopWidth = "4px";
+                    document.getElementById('tbl1_b1').style.borderRightWidth = "4px";
+                    document.getElementById('tbl1_b1').style.borderLeftWidth = "4px";
+                    document.getElementById('tbl1_b2').style.borderRightWidth = "4px";
+                    document.getElementById('tbl1_b2').style.borderLeftWidth = "4px";
+                    document.getElementById('tbl1_b3').style.borderRightWidth = "4px";
+                    document.getElementById('tbl1_b3').style.borderLeftWidth = "4px";
+                    document.getElementById('tbl1_b3').style.borderBottomWidth = "4px";
+                } else {
+                    console.log("p2 first tails");
+                    choice1 = data['penny_side'];
+
+                    document.getElementById('tbl2_a3').style.backgroundColor='#f0c0c0';
+                    document.getElementById('tbl2_b3').style.backgroundColor='#f0c0c0';
+                    document.getElementById('tbl2_c3').style.backgroundColor='#f0c0c0';
+                    document.getElementById('heads_text_2').style.color='#858585';
+                    document.getElementById('tbl2_b2').style.color='#858585';
+                    document.getElementById('tbl2_b2text').style.color='#858585';
+                    document.getElementById('tbl2_c2').style.color='#858585';
+                    document.getElementById('tbl2_c2text').style.color='#858585';
+                    document.getElementById('tbl2_a3_start').style.backgroundColor='#f0c0c0';
+                    document.getElementById('tbl2_b3_start').style.backgroundColor='#f0c0c0';
+                    document.getElementById('tbl2_c3_start').style.backgroundColor='#f0c0c0';
+                    document.getElementById('heads_text_2_start').style.color='#858585';
+                    document.getElementById('tbl2_b2_start').style.color='#858585';
+                    document.getElementById('tbl2_b2text_start').style.color='#858585';
+                    document.getElementById('tbl2_c2_start').style.color='#858585';
+                    document.getElementById('tbl2_c2text_start').style.color='#858585';
+
+                    document.getElementById('tbl1_b1').style.color='#858585';
+                    document.getElementById('tbl1_b2').style.color='#858585';
+                    document.getElementById('tbl1_b2text').style.color='#858585';
+                    document.getElementById('tbl1_b3').style.color='#858585';
+                    document.getElementById('tbl1_b3text').style.color='#858585';
+                    document.getElementById('tbl1_c1').style.borderTopWidth = "4px";
+                    document.getElementById('tbl1_c1').style.borderRightWidth = "4px";
+                    document.getElementById('tbl1_c1').style.borderLeftWidth = "4px";
+                    document.getElementById('tbl1_c2').style.borderRightWidth = "4px";
+                    document.getElementById('tbl1_c2').style.borderLeftWidth = "4px";
+                    document.getElementById('tbl1_c3').style.borderRightWidth = "4px";
+                    document.getElementById('tbl1_c3').style.borderLeftWidth = "4px";
+                    document.getElementById('tbl1_c3').style.borderBottomWidth = "4px";
+                }
+            }
+
+        } else { //second
+                console.log("receive data:second!");
+                if(pause_first_flag){
+                    clearTimeout(pause_first);
+                }
+
+                if(pause_timer_started == false){
+                    timer.pause();
+                    if(js_vars.player_id == data['player']) { //if you are second mover
+                        factor.pause();
+                        }
+                    }
+                game_over = true;
+                if(beginning_timer == false){
+                    document.getElementById('submit').style.display='inline';
+                    document.getElementById("outer-circle").style.background = "#696969";
+                    document.getElementById("timer").style.color = "#696969";
+                    document.getElementById("timebar").style.display = "none"
+                }
+
+
+                if(data['player'] == 1) { // player 1 is second mover
+                    if (data['penny_side']) {// heads (second move)
+
+                        document.getElementById('tbl1_a2').style.backgroundColor='#f0c0c0';
+                        document.getElementById('tbl1_b2').style.backgroundColor='#f0c0c0';
+                        document.getElementById('tbl1_c2').style.backgroundColor='#f0c0c0';
+                        document.getElementById('tails_text_1').style.color='#858585';
+                        document.getElementById('tbl1_b3').style.color='#858585';
+                        document.getElementById('tbl1_b3text').style.color='#858585';
+                        document.getElementById('tbl1_c3').style.color='#858585';
+                        document.getElementById('tbl1_c3text').style.color='#858585';
+                        document.getElementById('tbl1_a2_start').style.backgroundColor='#f0c0c0';
+                        document.getElementById('tbl1_b2_start').style.backgroundColor='#f0c0c0';
+                        document.getElementById('tbl1_c2_start').style.backgroundColor='#f0c0c0';
+                        document.getElementById('tails_text_1_start').style.color='#858585';
+                        document.getElementById('tbl1_b3_start').style.color='#858585';
+                        document.getElementById('tbl1_b3text_start').style.color='#858585';
+                        document.getElementById('tbl1_c3_start').style.color='#858585';
+                        document.getElementById('tbl1_c3text_start').style.color='#858585';
+
+                        document.getElementById('tbl2_c1').style.color='#858585';
+                        document.getElementById('tbl2_c2').style.color='#858585';
+                        document.getElementById('tbl2_c2text').style.color='#858585';
+                        document.getElementById('tbl2_c3').style.color='#858585';
+                        document.getElementById('tbl2_c3text').style.color='#858585';
+                        document.getElementById('tbl2_b1').style.borderTopWidth = "4px";
+                        document.getElementById('tbl2_b1').style.borderRightWidth = "4px";
+                        document.getElementById('tbl2_b1').style.borderLeftWidth = "4px";
+                        document.getElementById('tbl2_b2').style.borderRightWidth = "4px";
+                        document.getElementById('tbl2_b2').style.borderLeftWidth = "4px";
+                        document.getElementById('tbl2_b3').style.borderRightWidth = "4px";
+                        document.getElementById('tbl2_b3').style.borderLeftWidth = "4px";
+                        document.getElementById('tbl2_b3').style.borderBottomWidth = "4px";
+                        document.getElementById('tbl2_c3_start').style.color='#858585';
+                        document.getElementById('tbl2_c3text_start').style.color='#858585';
+
+                        if(choice1){
+                            document.getElementById('tbl1_b2text').style.fontSize = "26px";
+                            document.getElementById('tbl2_b2text').style.fontSize = "26px";
+                        }
+                        else{
+                            document.getElementById('tbl1_c2text').style.fontSize = "26px";
+                            document.getElementById('tbl2_b3text').style.fontSize = "26px";
+                        }
+                    }
+                    else { // tails second move
+                        document.getElementById('tbl1_a3').style.backgroundColor='#f0c0c0';
+                        document.getElementById('tbl1_b3').style.backgroundColor='#f0c0c0';
+                        document.getElementById('tbl1_c3').style.backgroundColor='#f0c0c0';
+                        document.getElementById('heads_text_1').style.color='#858585';
+                        document.getElementById('tbl1_b2').style.color='#858585';
+                        document.getElementById('tbl1_b2text').style.color='#858585';
+                        document.getElementById('tbl1_c2').style.color='#858585';
+                        document.getElementById('tbl1_c2text').style.color='#858585';
+                        document.getElementById('tbl1_a3_start').style.backgroundColor='#f0c0c0';
+                        document.getElementById('tbl1_b3_start').style.backgroundColor='#f0c0c0';
+                        document.getElementById('tbl1_c3_start').style.backgroundColor='#f0c0c0';
+                        document.getElementById('heads_text_1_start').style.color='#858585';
+                        document.getElementById('tbl1_b2_start').style.color='#858585';
+                        document.getElementById('tbl1_b2text_start').style.color='#858585';
+                        document.getElementById('tbl1_c2_start').style.color='#858585';
+                        document.getElementById('tbl1_c2text_start').style.color='#858585';
+
+                        document.getElementById('tbl2_b1').style.color='#858585';
+                        document.getElementById('tbl2_b2').style.color='#858585';
+                        document.getElementById('tbl2_b2text').style.color='#858585';
+                        document.getElementById('tbl2_b3').style.color='#858585';
+                        document.getElementById('tbl2_b3text').style.color='#858585';
+                        document.getElementById('tbl2_c1').style.borderTopWidth = "4px";
+                        document.getElementById('tbl2_c1').style.borderRightWidth = "4px";
+                        document.getElementById('tbl2_c1').style.borderLeftWidth = "4px";
+                        document.getElementById('tbl2_c2').style.borderRightWidth = "4px";
+                        document.getElementById('tbl2_c2').style.borderLeftWidth = "4px";
+                        document.getElementById('tbl2_c3').style.borderRightWidth = "4px";
+                        document.getElementById('tbl2_c3').style.borderLeftWidth = "4px";
+                        document.getElementById('tbl2_c3').style.borderBottomWidth = "4px";
+
+                        if(choice1){
+                            document.getElementById('tbl1_b3text').style.fontSize = "26px";
+                            document.getElementById('tbl2_c2text').style.fontSize = "26px";
+                        }
+                        else{
+                            document.getElementById('tbl1_c3text').style.fontSize = "26px";
+                            document.getElementById('tbl2_c3text').style.fontSize = "26px";
+                        }
+                    }
+                }
+                else{ //player two second mover
+                     if (data['penny_side']) { //player two second heads
+                        document.getElementById('tbl2_a2').style.backgroundColor='#f0c0c0';
+                        document.getElementById('tbl2_b2').style.backgroundColor='#f0c0c0';
+                        document.getElementById('tbl2_c2').style.backgroundColor='#f0c0c0';
+                        document.getElementById('tails_text_2').style.color='#858585';
+                        document.getElementById('tbl2_b3').style.color='#858585';
+                        document.getElementById('tbl2_b3text').style.color='#858585';
+                        document.getElementById('tbl2_c3').style.color='#858585';
+                        document.getElementById('tbl2_c3text').style.color='#858585';
+                        document.getElementById('tbl2_a2_start').style.backgroundColor='#f0c0c0';
+                        document.getElementById('tbl2_b2_start').style.backgroundColor='#f0c0c0';
+                        document.getElementById('tbl2_c2_start').style.backgroundColor='#f0c0c0';
+                        document.getElementById('tails_text_2_start').style.color='#858585';
+                        document.getElementById('tbl2_b3_start').style.color='#858585';
+                        document.getElementById('tbl2_b3text_start').style.color='#858585';
+                        document.getElementById('tbl2_c3_start').style.color='#858585';
+                        document.getElementById('tbl2_c3text_start').style.color='#858585';
+
+                        document.getElementById('tbl1_c1').style.color='#858585';
+                        document.getElementById('tbl1_c2').style.color='#858585';
+                        document.getElementById('tbl1_c2text').style.color='#858585';
+                        document.getElementById('tbl1_c3').style.color='#858585';
+                        document.getElementById('tbl1_c3text').style.color='#858585';
+                        document.getElementById('tbl1_b1').style.borderTopWidth = "4px";
+                        document.getElementById('tbl1_b1').style.borderRightWidth = "4px";
+                        document.getElementById('tbl1_b1').style.borderLeftWidth = "4px";
+                        document.getElementById('tbl1_b2').style.borderRightWidth = "4px";
+                        document.getElementById('tbl1_b2').style.borderLeftWidth = "4px";
+                        document.getElementById('tbl1_b3').style.borderRightWidth = "4px";
+                        document.getElementById('tbl1_b3').style.borderLeftWidth = "4px";
+                        document.getElementById('tbl1_b3').style.borderBottomWidth = "4px";
+
+                        if(choice1){
+                            document.getElementById('tbl1_b2text').style.fontSize = "26px";
+                            document.getElementById('tbl2_b2text').style.fontSize = "26px";
+                        }
+                        else{
+                            document.getElementById('tbl1_b3text').style.fontSize = "26px";
+                            document.getElementById('tbl2_c2text').style.fontSize = "26px";
+                        }
+                     }
+                    else{ //player two second tails
+                        document.getElementById('tbl2_a3').style.backgroundColor='#f0c0c0';
+                        document.getElementById('tbl2_b3').style.backgroundColor='#f0c0c0';
+                        document.getElementById('tbl2_c3').style.backgroundColor='#f0c0c0';
+                        document.getElementById('heads_text_2').style.color='#858585';
+                        document.getElementById('tbl2_b2').style.color='#858585';
+                        document.getElementById('tbl2_b2text').style.color='#858585';
+                        document.getElementById('tbl2_c2').style.color='#858585';
+                        document.getElementById('tbl2_c2text').style.color='#858585';
+                        document.getElementById('tbl2_a3_start').style.backgroundColor='#f0c0c0';
+                        document.getElementById('tbl2_b3_start').style.backgroundColor='#f0c0c0';
+                        document.getElementById('tbl2_c3_start').style.backgroundColor='#f0c0c0';
+                        document.getElementById('heads_text_2_start').style.color='#858585';
+                        document.getElementById('tbl2_b2_start').style.color='#858585';
+                        document.getElementById('tbl2_b2text_start').style.color='#858585';
+                        document.getElementById('tbl2_c2_start').style.color='#858585';
+                        document.getElementById('tbl2_c2text_start').style.color='#858585';
+
+                        document.getElementById('tbl1_b1').style.color='#858585';
+                        document.getElementById('tbl1_b2').style.color='#858585';
+                        document.getElementById('tbl1_b2text').style.color='#858585';
+                        document.getElementById('tbl1_b3').style.color='#858585';
+                        document.getElementById('tbl1_b3text').style.color='#858585';
+                        document.getElementById('tbl1_c1').style.borderTopWidth = "4px";
+                        document.getElementById('tbl1_c1').style.borderRightWidth = "4px";
+                        document.getElementById('tbl1_c1').style.borderLeftWidth = "4px";
+                        document.getElementById('tbl1_c2').style.borderRightWidth = "4px";
+                        document.getElementById('tbl1_c2').style.borderLeftWidth = "4px";
+                        document.getElementById('tbl1_c3').style.borderRightWidth = "4px";
+                        document.getElementById('tbl1_c3').style.borderLeftWidth = "4px";
+                        document.getElementById('tbl1_c3').style.borderBottomWidth = "4px";
+
+                         if(choice1){
+                            document.getElementById('tbl1_c2text').style.fontSize = "26px";
+                            document.getElementById('tbl2_b3text').style.fontSize = "26px";
+                        }
+                        else{
+                            document.getElementById('tbl1_c3text').style.fontSize = "26px";
+                            document.getElementById('tbl2_c3text').style.fontSize = "26px";
+                        }
+                     }
+
+            }
+        }
+    }
+
+}
+
+
+// TIMER ON PAGE
+function startTimer(seconds, container, oncomplete) {
+    var startTime, timer, obj, ms = seconds*1000,
+        display = document.getElementById(container);
+    obj = {};
+    obj.resume = function() {
+        startTime = new Date().getTime();
+        timer = setInterval(obj.step,250); // adjust this number to affect granularity
+                            // lower numbers are more accurate, but more CPU-expensive
+    };
+    obj.pause = function() {
+        ms = obj.step();
+        clearInterval(timer);
+    };
+    obj.step = function() {
+        var now = Math.max(0,ms-(new Date().getTime()-startTime)),
+            //m = Math.floor(now/60000), s = Math.floor(now/1000)%60;
+            s = Math.floor(now/1000)
+        s = (s < 10 ? "0" : "")+s+"s";
+        //display.innerHTML = m+":"+s;
+        display.innerHTML = s;
+        if( now == 0) {
+            clearInterval(timer);
+            obj.resume = function() {};
+            if( oncomplete) oncomplete();
+        }
+        return now;
+    };
+    obj.resume();
+    return obj;
+}
+
+function heads(){
+    console.log("function heads:" + first);
+    if(js_vars.player_id == 1){
+        button1_1.disabled = true;
+        button2_1.disabled = true;
+        button1_1_start.disabled = true;
+        button2_1_start.disabled = true;
+        button1_1.style.display = "none";
+        document.getElementById("heads_text_1").style.display = "inline";
+        button2_1.style.display = "none";
+        document.getElementById("tails_text_1").style.display = "inline";
+        button1_1_start.style.display = "none";
+        document.getElementById("heads_text_1_start").style.display = "inline";
+        button2_1_start.style.display = "none";
+        document.getElementById("tails_text_1_start").style.display = "inline";
+    }
+    if(js_vars.player_id == 2){
+        button1_2.disabled = true;
+        button2_2.disabled = true;
+        button1_2_start.disabled = true;
+        button2_2_start.disabled = true;
+        button1_2.style.display = "none";
+        document.getElementById("heads_text_2").style.display = "inline";
+        button2_2.style.display = "none";
+        document.getElementById("tails_text_2").style.display = "inline";
+        button1_2_start.style.display = "none";
+        document.getElementById("heads_text_2_start").style.display = "inline";
+        button2_2_start.style.display = "none";
+        document.getElementById("tails_text_2_start").style.display = "inline";
+    }
+    var choice = true;
+    var time_spent = Date.now() - start_time;
+    i_moved = true;
+    document.getElementById('time_of_move').value = time_spent;
+    document.getElementById('penny_side').value = choice;
+    document.getElementById('time_out').value = false;
+    document.getElementById('move_in_beginning').value = beginning_timer;//move during the beginning
+    document.getElementById('stop').value = stop;
+    document.getElementById('stop_time').value = stop_time;
+    document.getElementById('simultaneous').value = simultaneous;
+
+    if(first) {
+        liveSend({"type": "button", "penny_side": choice, "first": true})
+        console.log("first if cond:" + first);
+    }
+    else {
+        liveSend({"type": "button", "penny_side": choice, "first": false})
+    }
+}
+
+function tails(){
+    if(js_vars.player_id == 1){
+        button1_1.disabled = true;
+        button2_1.disabled = true;
+        button1_1_start.disabled = true;
+        button2_1_start.disabled = true;
+        button1_1.style.display = "none"
+        document.getElementById("heads_text_1").style.display = "inline"
+        button2_1.style.display = "none"
+        document.getElementById("tails_text_1").style.display = "inline"
+        document.getElementById("heads_text_1_start").style.display = "inline"
+        button1_1_start.style.display = "none"
+        document.getElementById("tails_text_1_start").style.display = "inline"
+        button2_1_start.style.display = "none"
+    }
+    if(js_vars.player_id == 2){
+        button1_2.disabled = true;
+        button2_2.disabled = true;
+        button1_2_start.disabled = true;
+        button2_2_start.disabled = true;
+        button1_2.style.display = "none"
+        document.getElementById("heads_text_2").style.display = "inline"
+        button2_2.style.display = "none"
+        document.getElementById("tails_text_2").style.display = "inline"
+        button1_2_start.style.display = "none"
+        document.getElementById("heads_text_2_start").style.display = "inline"
+        button2_2_start.style.display = "none"
+        document.getElementById("tails_text_2_start").style.display = "inline"
+    }
+    var choice = false;
+    var time_spent = Date.now() - start_time;
+    i_moved = true;
+    console.log('time_spent: ' + time_spent)
+    document.getElementById('time_of_move').value = time_spent;
+    document.getElementById('penny_side').value = choice;
+    document.getElementById('time_out').value = false;
+    document.getElementById('move_in_beginning').value = beginning_timer; //move during the beginning
+    document.getElementById('stop').value = stop;
+    document.getElementById('stop_time').value = stop_time;
+    document.getElementById('simultaneous').value = simultaneous;
+    if(first==true) {
+        liveSend({"type": "button", "penny_side": choice, "first": true})
+    }
+    else {
+        liveSend({"type": "button", "penny_side": choice, "first": false})
+    }
+}
+
+//Timeout function
+function timeOut() {
+    button1_1.disabled = true;
+    button2_1.disabled = true;
+    button1_1_start.disabled = true;
+    button2_1_start.disabled = true;
+
+    button1_1.style.display = "none";
+    document.getElementById("heads_text_1").style.display = "inline";
+    button2_1.style.display = "none";
+    document.getElementById("tails_text_1").style.display = "inline";
+    button1_1_start.style.display = "none";
+    document.getElementById("heads_text_1_start").style.display = "inline";
+    button2_1_start.style.display = "none";
+    document.getElementById("tails_text_1_start").style.display = "inline";
+
+    button1_2.style.display = "none";
+    document.getElementById("heads_text_2").style.display = "inline";
+    button2_2.style.display = "none";
+    document.getElementById("tails_text_2").style.display = "inline";
+    button1_2_start.style.display = "none";
+    document.getElementById("heads_text_2_start").style.display = "inline";
+    button2_2_start.style.display = "none";
+    document.getElementById("tails_text_2_start").style.display = "inline";
+    if(i_moved == false) {
+        document.getElementById('penny_side').value = true;
+        document.getElementById('time_of_move').value = -1;
+        document.getElementById('time_out').value = true;
+        document.getElementById('stop').value = stop;
+        document.getElementById('stop_time').value = stop_time;
+        document.getElementById('simultaneous').value = simultaneous;
+    }
+    document.getElementById('move_in_beginning').value = beginning_timer; //move during the beginning
+    document.getElementById('submit').style.display='inline';
+    document.getElementById("outer-circle").style.background = "#696969";
+    document.getElementById("timer").style.color = "#696969";
+}
+
+
+// Dynamic payoff factor
+function startFactor(seconds, delta, container, oncomplete) {
+    var startTime, timer, obj, ms = seconds*1000,
+        display = document.getElementById(container); //the html container where this is placed
+    obj = {};
+    obj.resume = function() {
+        startTime = new Date().getTime();
+        timer = setInterval(obj.step,100); // adjust this number to affect granularity
+                            // lower numbers are more accurate, but more CPU-expensive
+    };
+    obj.pause = function() {
+        ms = obj.step();
+        clearInterval(timer);
+    };
+    obj.step = function() {
+        var now = Math.max(0,ms-(new Date().getTime()-startTime));
+        var factor = 1-(1-delta)*((60000-now)/60000);
+        p = (factor * 100).toFixed(2) + "%";
+        display.innerHTML = p;
+        if( now == 0) {
+            clearInterval(timer);
+            obj.resume = function() {};
+            if( oncomplete) oncomplete();
+        }
+        return now;
+    };
+    obj.resume();
+    return obj;
+}
+
+// checkbox validation
+function validate_heads(num) {
+    heads_id = 'heads' + num.toString();
+    tails_id = 'tails' + num.toString();
+    if (document.getElementById(heads_id).checked && document.getElementById(tails_id).checked) {
+        document.getElementById(heads_id).checked = true;
+        document.getElementById(tails_id).checked = false;
+        liveSend({"type": "checkbox", "num": num, "penny_side": "tails", check: false})
+    }
+    if(document.getElementById(heads_id).checked){
+        liveSend({"type": "checkbox", "num": num, "penny_side": "heads", check: true})
+
+    }
+    else{
+        liveSend({"type": "checkbox", "num": num, "penny_side": "heads", check: false})
+    }
+}
+
+function validate_tails(num) {
+    heads_id = 'heads' + num.toString();
+    tails_id = 'tails' + num.toString();
+    if (document.getElementById(heads_id).checked && document.getElementById(tails_id).checked) {
+        document.getElementById(heads_id).checked = false;
+        document.getElementById(tails_id).checked = true;
+        liveSend({"type": "checkbox", "num": num, "penny_side": "heads", check: false})
+    }
+    if(document.getElementById(tails_id).checked){
+        liveSend({"type": "checkbox", "num": num, "penny_side": "tails", check: true})
+    }
+    else{
+        liveSend({"type": "checkbox", "num": num, "penny_side": "tails", check: false})
+    }
+}
+
+
+//deactivate checkbox function
+function deactivate_checkbox(num) {
+    heads_id = 'heads' + num.toString();
+    tails_id = 'tails' + num.toString();
+    heads_label_id = heads_id + '_label';
+    tails_label_id = tails_id + '_label';
+    document.getElementById(heads_id).disabled = true;
+    document.getElementById(tails_id).disabled = true;
+    document.getElementById(heads_label_id).style.color = "#9c9c9c";
+    document.getElementById(tails_label_id).style.color = "#9c9c9c";
+}
+
+//preprogrammed move
+function preprogrammed_move(num){
+                    heads1 = p1_heads_checkbox_array[num-1];
+                    tails1 = p1_tails_checkbox_array[num-1];
+                    heads2 = p2_heads_checkbox_array[num-1];
+                    tails2 = p2_tails_checkbox_array[num-1];
+                    console.log('p2_heads' + p2_heads_checkbox_array);
+                    console.log((heads2 || tails2));
+                    console.log(js_vars);
+                    if((heads1 || tails1)&&(heads2 || tails2)){
+                        simultaneous_move(num);
+                    }
+                    else if(js_vars.player_id == 1 && (heads1 || tails1)){
+                        stop = true;
+                        stop_time = num*10000;
+                        if(heads1){
+                            heads();
+                            //const heads_label_id_moved = heads_id + '_label';
+                            //setTimeout(function(){document.getElementById(heads_label_id_moved).style.color = "red";}, 100);
+                        }
+                        if(tails1){
+                            tails();
+                        }
+                    }
+                    else if(js_vars.player_id == 2 && (heads2 || tails2)){
+                        stop = true;
+                        stop_time = num*10000;
+                        if(heads2){
+                            heads();
+                        }
+                        if(tails2){
+                            tails();
+                        }
+                    }
+}
+
+function simultaneous_move(num) {
+    //change timer
+    timer.pause();
+    document.getElementById('submit').style.display='inline';
+    document.getElementById("outer-circle").style.background = "#696969";
+    document.getElementById("timer").style.color = "#696969";
+    document.getElementById("timebar").style.display = "none"
+    factor.pause();
+    //store information in formfields
+    game_over = true;
+    i_moved = true;
+    p1_choice = p1_heads_checkbox_array[num-1];
+    p2_choice = p2_heads_checkbox_array[num-1];
+    var time_spent = Date.now() - start_time;
+    document.getElementById('time_of_move').value = time_spent;
+    if(js_vars.player_id == 1){
+        document.getElementById('penny_side').value = p1_choice;
+    }
+    if(js_vars.player_id == 2){
+        document.getElementById('penny_side').value = p2_choice;
+    }
+    document.getElementById('time_out').value = false;
+    document.getElementById('move_in_beginning').value = beginning_timer;//move during the beginning
+    document.getElementById('stop').value = true;
+    document.getElementById('stop_time').value = num*10000;
+    document.getElementById('simultaneous').value = true;
+    //disable buttons p1
+    button1_1.disabled = true;
+    button2_1.disabled = true;
+    button1_1_start.disabled = true;
+    button2_1_start.disabled = true;
+    button1_1.style.display = "none";
+    document.getElementById("heads_text_1").style.display = "inline";
+    button2_1.style.display = "none";
+    document.getElementById("tails_text_1").style.display = "inline";
+    button1_1_start.style.display = "none";
+    document.getElementById("heads_text_1_start").style.display = "inline";
+    button2_1_start.style.display = "none";
+    document.getElementById("tails_text_1_start").style.display = "inline";
+    //disable buttons p2
+    button1_2.disabled = true;
+    button2_2.disabled = true;
+    button1_2_start.disabled = true;
+    button2_2_start.disabled = true;
+    button1_2.style.display = "none";
+    document.getElementById("heads_text_2").style.display = "inline";
+    button2_2.style.display = "none";
+    document.getElementById("tails_text_2").style.display = "inline";
+    button1_2_start.style.display = "none";
+    document.getElementById("heads_text_2_start").style.display = "inline";
+    button2_2_start.style.display = "none";
+    document.getElementById("tails_text_2_start").style.display = "inline";
+    //deactivate all checkboxes
+    deactivate_checkbox(1);
+    deactivate_checkbox(2);
+    deactivate_checkbox(3);
+    deactivate_checkbox(4);
+    deactivate_checkbox(5);
+    //remove text for endgame payoffs
+    document.getElementById("endgame_start").style.visibility='hidden';
+    //style matrix
+    if(p1_choice){ //p1 heads
+        document.getElementById('tbl1_a2').style.backgroundColor='#f0c0c0';
+        document.getElementById('tbl1_b2').style.backgroundColor='#f0c0c0';
+        document.getElementById('tbl1_c2').style.backgroundColor='#f0c0c0';
+        document.getElementById('tails_text_1').style.color='#858585';
+        document.getElementById('tbl1_b3').style.color='#858585';
+        document.getElementById('tbl1_b3text').style.color='#858585';
+        document.getElementById('tbl1_c3').style.color='#858585';
+        document.getElementById('tbl1_c3text').style.color='#858585';
+        document.getElementById('tbl1_a2_start').style.backgroundColor='#f0c0c0';
+        document.getElementById('tbl1_b2_start').style.backgroundColor='#f0c0c0';
+        document.getElementById('tbl1_c2_start').style.backgroundColor='#f0c0c0';
+        document.getElementById('tails_text_1_start').style.color='#858585';
+        document.getElementById('tbl1_b3_start').style.color='#858585';
+        document.getElementById('tbl1_b3text_start').style.color='#858585';
+        document.getElementById('tbl1_c3_start').style.color='#858585';
+        document.getElementById('tbl1_c3text_start').style.color='#858585';
+        document.getElementById('tbl2_c1').style.color='#858585';
+        document.getElementById('tbl2_c2').style.color='#858585';
+        document.getElementById('tbl2_c2text').style.color='#858585';
+        document.getElementById('tbl2_c3').style.color='#858585';
+        document.getElementById('tbl2_c3text').style.color='#858585';
+        document.getElementById('tbl2_b1').style.borderTopWidth = "4px";
+        document.getElementById('tbl2_b1').style.borderRightWidth = "4px";
+        document.getElementById('tbl2_b1').style.borderLeftWidth = "4px";
+        document.getElementById('tbl2_b2').style.borderRightWidth = "4px";
+        document.getElementById('tbl2_b2').style.borderLeftWidth = "4px";
+        document.getElementById('tbl2_b3').style.borderRightWidth = "4px";
+        document.getElementById('tbl2_b3').style.borderLeftWidth = "4px";
+        document.getElementById('tbl2_b3').style.borderBottomWidth = "4px";
+        if(p2_choice){ //p2 heads
+            document.getElementById('tbl2_a2').style.backgroundColor='#f0c0c0';
+            document.getElementById('tbl2_b2').style.backgroundColor='#f0c0c0';
+            document.getElementById('tbl2_c2').style.backgroundColor='#f0c0c0';
+            document.getElementById('tails_text_2').style.color='#858585';
+            document.getElementById('tbl2_b3').style.color='#858585';
+            document.getElementById('tbl2_b3text').style.color='#858585';
+            document.getElementById('tbl2_c3').style.color='#858585';
+            document.getElementById('tbl2_c3text').style.color='#858585';
+            document.getElementById('tbl2_a2_start').style.backgroundColor='#f0c0c0';
+            document.getElementById('tbl2_b2_start').style.backgroundColor='#f0c0c0';
+            document.getElementById('tbl2_c2_start').style.backgroundColor='#f0c0c0';
+            document.getElementById('tails_text_2_start').style.color='#858585';
+            document.getElementById('tbl2_b3_start').style.color='#858585';
+            document.getElementById('tbl2_b3text_start').style.color='#858585';
+            document.getElementById('tbl2_c3_start').style.color='#858585';
+            document.getElementById('tbl2_c3text_start').style.color='#858585';
+            document.getElementById('tbl1_c1').style.color='#858585';
+            document.getElementById('tbl1_c2').style.color='#858585';
+            document.getElementById('tbl1_c2text').style.color='#858585';
+            document.getElementById('tbl1_c3').style.color='#858585';
+            document.getElementById('tbl1_c3text').style.color='#858585';
+            document.getElementById('tbl1_b1').style.borderTopWidth = "4px";
+            document.getElementById('tbl1_b1').style.borderRightWidth = "4px";
+            document.getElementById('tbl1_b1').style.borderLeftWidth = "4px";
+            document.getElementById('tbl1_b2').style.borderRightWidth = "4px";
+            document.getElementById('tbl1_b2').style.borderLeftWidth = "4px";
+            document.getElementById('tbl1_b3').style.borderRightWidth = "4px";
+            document.getElementById('tbl1_b3').style.borderLeftWidth = "4px";
+            document.getElementById('tbl1_b3').style.borderBottomWidth = "4px";
+            document.getElementById('tbl1_b2text').style.fontSize = "26px";
+            document.getElementById('tbl2_b2text').style.fontSize = "26px";
+        }
+        else{ //p2 tails
+                document.getElementById('tbl2_a3').style.backgroundColor='#f0c0c0';
+                document.getElementById('tbl2_b3').style.backgroundColor='#f0c0c0';
+                document.getElementById('tbl2_c3').style.backgroundColor='#f0c0c0';
+                document.getElementById('heads_text_2').style.color='#858585';
+                document.getElementById('tbl2_b2').style.color='#858585';
+                document.getElementById('tbl2_b2text').style.color='#858585';
+                document.getElementById('tbl2_c2').style.color='#858585';
+                document.getElementById('tbl2_c2text').style.color='#858585';
+                document.getElementById('tbl2_a3_start').style.backgroundColor='#f0c0c0';
+                document.getElementById('tbl2_b3_start').style.backgroundColor='#f0c0c0';
+                document.getElementById('tbl2_c3_start').style.backgroundColor='#f0c0c0';
+                document.getElementById('heads_text_2_start').style.color='#858585';
+                document.getElementById('tbl2_b2_start').style.color='#858585';
+                document.getElementById('tbl2_b2text_start').style.color='#858585';
+                document.getElementById('tbl2_c2_start').style.color='#858585';
+                document.getElementById('tbl2_c2text_start').style.color='#858585';
+                document.getElementById('tbl1_b1').style.color='#858585';
+                document.getElementById('tbl1_b2').style.color='#858585';
+                document.getElementById('tbl1_b2text').style.color='#858585';
+                document.getElementById('tbl1_b3').style.color='#858585';
+                document.getElementById('tbl1_b3text').style.color='#858585';
+                document.getElementById('tbl1_c1').style.borderTopWidth = "4px";
+                document.getElementById('tbl1_c1').style.borderRightWidth = "4px";
+                document.getElementById('tbl1_c1').style.borderLeftWidth = "4px";
+                document.getElementById('tbl1_c2').style.borderRightWidth = "4px";
+                document.getElementById('tbl1_c2').style.borderLeftWidth = "4px";
+                document.getElementById('tbl1_c3').style.borderRightWidth = "4px";
+                document.getElementById('tbl1_c3').style.borderLeftWidth = "4px";
+                document.getElementById('tbl1_c3').style.borderBottomWidth = "4px";
+                document.getElementById('tbl1_c2text').style.fontSize = "26px";
+                document.getElementById('tbl2_b3text').style.fontSize = "26px";
+
+        }
+    }
+    else{ //p1 tails
+        document.getElementById('tbl1_a3').style.backgroundColor='#f0c0c0';
+        document.getElementById('tbl1_b3').style.backgroundColor='#f0c0c0';
+        document.getElementById('tbl1_c3').style.backgroundColor='#f0c0c0';
+        document.getElementById('heads_text_1').style.color='#858585';
+        document.getElementById('tbl1_b2').style.color='#858585';
+        document.getElementById('tbl1_b2text').style.color='#858585';
+        document.getElementById('tbl1_c2').style.color='#858585';
+        document.getElementById('tbl1_c2text').style.color='#858585';
+        document.getElementById('tbl1_a3_start').style.backgroundColor='#f0c0c0';
+        document.getElementById('tbl1_b3_start').style.backgroundColor='#f0c0c0';
+        document.getElementById('tbl1_c3_start').style.backgroundColor='#f0c0c0';
+        document.getElementById('heads_text_1_start').style.color='#858585';
+        document.getElementById('tbl1_b2_start').style.color='#858585';
+        document.getElementById('tbl1_b2text_start').style.color='#858585';
+        document.getElementById('tbl1_c2_start').style.color='#858585';
+        document.getElementById('tbl1_c2text_start').style.color='#858585';
+        document.getElementById('tbl2_b1').style.color='#858585';
+        document.getElementById('tbl2_b2').style.color='#858585';
+        document.getElementById('tbl2_b2text').style.color='#858585';
+        document.getElementById('tbl2_b3').style.color='#858585';
+        document.getElementById('tbl2_b3text').style.color='#858585';
+        document.getElementById('tbl2_c1').style.borderTopWidth = "4px";
+        document.getElementById('tbl2_c1').style.borderRightWidth = "4px";
+        document.getElementById('tbl2_c1').style.borderLeftWidth = "4px";
+        document.getElementById('tbl2_c2').style.borderRightWidth = "4px";
+        document.getElementById('tbl2_c2').style.borderLeftWidth = "4px";
+        document.getElementById('tbl2_c3').style.borderRightWidth = "4px";
+        document.getElementById('tbl2_c3').style.borderLeftWidth = "4px";
+        document.getElementById('tbl2_c3').style.borderBottomWidth = "4px";
+        if(p2_choice){ //p2 heads
+            document.getElementById('tbl2_a2').style.backgroundColor='#f0c0c0';
+            document.getElementById('tbl2_b2').style.backgroundColor='#f0c0c0';
+            document.getElementById('tbl2_c2').style.backgroundColor='#f0c0c0';
+            document.getElementById('tails_text_2').style.color='#858585';
+            document.getElementById('tbl2_b3').style.color='#858585';
+            document.getElementById('tbl2_b3text').style.color='#858585';
+            document.getElementById('tbl2_c3').style.color='#858585';
+            document.getElementById('tbl2_c3text').style.color='#858585';
+            document.getElementById('tbl2_a2_start').style.backgroundColor='#f0c0c0';
+            document.getElementById('tbl2_b2_start').style.backgroundColor='#f0c0c0';
+            document.getElementById('tbl2_c2_start').style.backgroundColor='#f0c0c0';
+            document.getElementById('tails_text_2_start').style.color='#858585';
+            document.getElementById('tbl2_b3_start').style.color='#858585';
+            document.getElementById('tbl2_b3text_start').style.color='#858585';
+            document.getElementById('tbl2_c3_start').style.color='#858585';
+            document.getElementById('tbl2_c3text_start').style.color='#858585';
+            document.getElementById('tbl1_c1').style.color='#858585';
+            document.getElementById('tbl1_c2').style.color='#858585';
+            document.getElementById('tbl1_c2text').style.color='#858585';
+            document.getElementById('tbl1_c3').style.color='#858585';
+            document.getElementById('tbl1_c3text').style.color='#858585';
+            document.getElementById('tbl1_b1').style.borderTopWidth = "4px";
+            document.getElementById('tbl1_b1').style.borderRightWidth = "4px";
+            document.getElementById('tbl1_b1').style.borderLeftWidth = "4px";
+            document.getElementById('tbl1_b2').style.borderRightWidth = "4px";
+            document.getElementById('tbl1_b2').style.borderLeftWidth = "4px";
+            document.getElementById('tbl1_b3').style.borderRightWidth = "4px";
+            document.getElementById('tbl1_b3').style.borderLeftWidth = "4px";
+            document.getElementById('tbl1_b3').style.borderBottomWidth = "4px";
+            document.getElementById('tbl1_b3text').style.fontSize = "26px";
+            document.getElementById('tbl2_c2text').style.fontSize = "26px";
+        }
+        else{ //p2 tails
+                document.getElementById('tbl2_a3').style.backgroundColor='#f0c0c0';
+                document.getElementById('tbl2_b3').style.backgroundColor='#f0c0c0';
+                document.getElementById('tbl2_c3').style.backgroundColor='#f0c0c0';
+                document.getElementById('heads_text_2').style.color='#858585';
+                document.getElementById('tbl2_b2').style.color='#858585';
+                document.getElementById('tbl2_b2text').style.color='#858585';
+                document.getElementById('tbl2_c2').style.color='#858585';
+                document.getElementById('tbl2_c2text').style.color='#858585';
+                document.getElementById('tbl2_a3_start').style.backgroundColor='#f0c0c0';
+                document.getElementById('tbl2_b3_start').style.backgroundColor='#f0c0c0';
+                document.getElementById('tbl2_c3_start').style.backgroundColor='#f0c0c0';
+                document.getElementById('heads_text_2_start').style.color='#858585';
+                document.getElementById('tbl2_b2_start').style.color='#858585';
+                document.getElementById('tbl2_b2text_start').style.color='#858585';
+                document.getElementById('tbl2_c2_start').style.color='#858585';
+                document.getElementById('tbl2_c2text_start').style.color='#858585';
+                document.getElementById('tbl1_b1').style.color='#858585';
+                document.getElementById('tbl1_b2').style.color='#858585';
+                document.getElementById('tbl1_b2text').style.color='#858585';
+                document.getElementById('tbl1_b3').style.color='#858585';
+                document.getElementById('tbl1_b3text').style.color='#858585';
+                document.getElementById('tbl1_c1').style.borderTopWidth = "4px";
+                document.getElementById('tbl1_c1').style.borderRightWidth = "4px";
+                document.getElementById('tbl1_c1').style.borderLeftWidth = "4px";
+                document.getElementById('tbl1_c2').style.borderRightWidth = "4px";
+                document.getElementById('tbl1_c2').style.borderLeftWidth = "4px";
+                document.getElementById('tbl1_c3').style.borderRightWidth = "4px";
+                document.getElementById('tbl1_c3').style.borderLeftWidth = "4px";
+                document.getElementById('tbl1_c3').style.borderBottomWidth = "4px";
+                document.getElementById('tbl1_c3text').style.fontSize = "26px";
+                document.getElementById('tbl2_c3text').style.fontSize = "26px";
+        }
+    }
+}
+
+</script>
+{% endblock %}
+
+
+{% block  app_styles %}
+<style>
+
+    .buttons {
+        position: relative;
+        max-width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+        z-index: 2;
+    }
+
+    .button1 {
+      background-color: #f0c0c0;
+      border: none;
+      border-radius: 3px;
+      color: red;
+      padding: 0;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 19px;
+      font-weight: bold;
+      margin: 4px 2px;
+      transition-duration: 0.2s;
+      cursor: pointer;
+      width: 55px;
+      height: 30px;
+      opacity: 80%;
+    }
+
+    .button1:hover {
+      background-color: #bd8484;
+    }
+
+
+   .button2 {
+      background-color: #f0c0c0;
+      border: none;
+      border-radius: 3px;
+      color: red;
+      padding: 0;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 19px;
+      font-weight: bold;
+      margin: 4px 4px 4px 4px;
+      transition-duration: 0.2s;
+      cursor: pointer;
+      width: 55px;
+      height: 30px;
+      opacity: 80%;
+    }
+    .button2:hover {
+      background-color: #bd8484;
+    }
+
+    .button_replacement {
+        padding-left: 4px;
+        padding-right: 4px;
+        line-height: 37.2px;
+    }
+
+    .timer_elements{
+        float: left;
+        padding:20px 20px 0px 20px;
+
+    }
+    #outer-circle {
+       background: green;
+       border-radius: 50%;
+       height: 60px;
+       width: 60px;
+       position: relative;
+       display: inline-block;
+        margin-left: 10px;
+        vertical-align: middle;
+        margin-bottom: 10px;
+    #outer-circle.waiting-animation{
+        animation: waiting1 5s 1 linear;
+
+    }
+
+      @keyframes waiting1 {
+          from {background-color: green;}
+          to {background-color: red;}
+    }
+       /*
+        Child elements with absolute positioning will be
+        positioned relative to this div
+       */
+     }
+     #inner-circle {
+       position: absolute;
+       background: antiquewhite;
+       border-radius: 50%;
+       height: 52px;
+       width: 52px;
+       text-align: center;
+       line-height: 52px;
+       font-size: 20px;
+         color: #fff;
+       /*
+        Put top edge and left edge in the center
+       */
+       top: 50%;
+       left: 50%;
+       margin: -26px 0px 0px -26px;
+       /*
+        Offset the position correctly with
+        minus half of the width and minus half of the height
+       */
+     }
+
+     .timebar_frame{
+      display: inline-block;
+      width: 80px;
+      height: 20px;
+      background-color: gray;
+      position: relative;
+      bottom: 0px;
+      left: 0px;
+      vertical-align: middle;
+     }
+
+    .timebar {
+      display: inline-block;
+      width: 80px;
+      height: 20px;
+      background-color: gray;
+      position: relative;
+      bottom: 0px;
+      left: 0px;
+
+    }
+
+    .timebar.active-animation {
+        animation: anim1 5s 1 linear;
+    }
+
+
+    @keyframes anim1 {
+      from {background-color: green;}
+      to {background-color: green;
+            width: 0;}
+    }
+
+    @keyframes idle { 100% {}
+    }
+
+    .lower-circle {
+       position: relative;
+       display:inline-block;
+       background: black;
+       border-radius: 50%;
+       height: 60px;
+       width: 60px;
+       text-align: center;
+       line-height: 60px;
+       font-size: 14px;
+       color: lightgrey;
+       margin-left: 35px;
+
+
+       /*
+        Put top edge and left edge in the center
+       top: 110%;
+       left: 20%;
+       margin: 0px 0px 0px 0px;
+       */
+
+       /*
+        Offset the position correctly with
+        minus half of the width and minus half of the height
+       */
+    }
+
+    table {
+        border-collapse: collapse;
+
+
+    }
+    th {
+        border: none;
+        background-color: white;
+        color: black;
+        font-weight: bold;
+        font-size: 19px;
+        padding: 3px 10px 3px 10px;
+        text-align: center;
+    }
+    td {
+        border: 1px solid black;
+        background-color: white;
+        color: black;
+        font-weight: bold;
+        font-size: 19px;
+        padding: 3px 10px 3px 10px;
+        text-align: center;
+    }
+    #tables
+    {
+       float:left;
+        padding:0px 20px 0px 20px;
+        display:inline-block
+    }
+    #timeline_checkboxes{
+        display: inline-block;
+        background-color: gray;
+        background-image: url('https://i.ibb.co/z67mGbb/arrow2.png');
+        margin-left: 0px;
+        padding-right: 100px;
+    }
+
+    .checkbox{
+        margin-left: 80px;
+        margin-right: 0px;
+    }
+
+</style>
+{% endblock %}
