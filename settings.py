@@ -3,10 +3,18 @@ from os import environ
 
 SESSION_CONFIGS = [
     dict(
+        name='info_only',
+        display_name="Only Instructions",
+        app_sequence=['informed_consent', 'instructions'],
+        num_demo_participants=1,
+        periods_per_block=10,
+    ),
+    dict(
         name='matching_pennies',
-        display_name="Matching Pennies",
+        display_name="Matching Pennies game only",
         app_sequence=['matching_pennies'],
         num_demo_participants=2,
+        periods_per_block=10,
     )
 ]
 

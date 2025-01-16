@@ -1,0 +1,96 @@
+{% extends "global/Page.html" %}
+
+{% load otree static %}
+
+
+
+
+{% block title %}
+<b style="color:grey">Informed consent</b>
+{% endblock %}
+
+{{ block styles}}
+<style>
+    li{margin: .25em;}
+
+.nli{margin: .1em;}
+
+</style>
+{{ endblock }}
+
+{% block content %}
+
+
+
+    <p>
+
+        Thank you for participating in this economic experiment.
+
+        The research team consists of researchers from Fernuniversität Hagen and from Heinrich-Heine University Düsseldorf, Germany.
+
+        On the following screens you will find the instructions for the experiment.
+
+        The experiment will be conducted exactly as described in the instructions.
+
+    </p>
+
+
+
+    <p>
+
+        During the experiment you make decisions on your computer with which you can earn money.
+
+        What you earn depends on your decisions.
+
+        Your earnings will be paid to you via SEPA wire transfer or via Paypal a few days after the experiment.
+
+        You will be asked to enter your payment details at the end of the experiment. Please make sure that you know the E-Mail address associated with your Paypal account or the IBAN and BIC for your bank account.
+
+    </p>
+
+
+
+    <p>
+
+        By participating in the experiment, you consent to the data collected being used for research purposes.
+
+        All members of the research team  will only analyze anonymized data.
+
+    </p>
+
+
+
+    <p>
+
+        Participation in the experiment is voluntary. You can cancel the experiment at any time.
+
+        In this case, unfortunately, we cannot pay you any money.
+
+        An early termination will not have a negative impact on your relationship with anybody in the research team or the institutions mentioned above.
+
+    </p>
+
+    <p>
+
+        By clicking the Next button, you confirm: 
+        <ol>
+            <li>that you understand that you have been asked for your consent to participate in the experiment</li>
+            <li>that you have read and understood the information about the experiment</li>
+            <li>that you consent to the use of the data you enter for research purposes</li>
+            <li>that you are participating voluntarily and understand that you can stop the experiment at any time</li>
+            <li>that you are at least 18 years of age</li>
+        </ol>
+
+
+    </p>
+
+
+
+    <button class="otree-btn-next btn btn-primary">Agree and continue</button>
+
+
+
+
+
+{% endblock %}
+

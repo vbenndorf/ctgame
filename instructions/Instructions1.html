@@ -1,0 +1,127 @@
+{% block title %}
+   <b style="color:grey"> How to earn money </b>
+{% endblock %}
+
+{% block app_styles %}
+<style>
+
+th {
+    border: 1px solid black;
+    font-size: 10pt;
+    width: 200px;
+    text-align: center;
+    font-weight:bold;
+    background-color: lightgray;
+    }
+
+td {
+    font-size: 10pt;
+    border: 1px solid black;
+    text-align: center;
+    }
+
+table {
+    table-layout: fixed;
+    width: 600px;
+    }
+
+.history td {
+    font-size: 16pt;
+    }
+
+.history th {
+    font-size: 12pt;
+    width: 100px;
+    text-align: center;
+    }
+.frac > span {
+    display: block;
+    padding: 0.1em;
+}
+.frac span.bottom {
+    border-top: thin solid black;
+}
+.frac span.symbol {
+    display: none;
+}
+img {
+  border: 5px solid #888;
+}
+
+.button_replacement {
+  padding-left: 4px;
+  padding-right: 4px;
+  
+  color:red; background-color:#f0c0c0; display:inline-block;
+  font-weight: bold;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+  <b>Read these instructions carefully.</b> You will have to successfully answer some questions that check your understanding of the instructions before you can proceed on to the study.  If you have any questions let the instructor know.
+
+  <p>Here is a screenshot of the screen where you make your decision</p>
+
+  <img src=https://i.ibb.co/hmNcyPf/screenshot.png>
+
+  <br><br>
+
+<b>Description</b>:
+<p>The most important information is the <b>Payoff matrix</b> in the center of the screen. Here you can make your decision and see the maximum payoffs you and the other player can earn if given cell of the matrix is reached.</p>
+<ul>
+      <li><b>How to make a decision</b></li>
+  <ul>
+    <li>In this game, you will select a row of the matrix and the other player will select a column.</li>
+    <li>You can choose between <span class="button_replacement">Heads</span> and  <span class="button_replacement">Tails</span> by clicking on the corresponding buttons in the row headers (first column of the matrix). </li>
+    <li>Clicking on the column headers will do nothing.</li>
+    <li>If you decide before the other player, the other player will be informed whether you chose <i>Heads</i> or <i>Tails</i>. Of course, the same applies to you if the other players makes a decision before you do.</li>
+    <br>
+  </ul>
+  <li><b>Interpretation of the maximum payoffs</b></li>
+  <ul>
+    <li>The red entries show your payoffs. The black entries are the payoffs of the other player.</li>
+    <li>For example, the upper left cell is reached if you and the other player both choose <i>Heads</i>. In this case, you can earn up to four points whereas the other player can earn up to eight points.</li>
+    <li>The upper right cell is reached if you choose <i>Heads</i> while the other player chooses <i>Tails</i>. In this case, you can earn up to eight points  whereas the other player can earn up to two points.</li>
+  <li>The values in the matrix may vary across periods.</li><br>
+  </ul>
+</ul>
+
+</li>
+
+<p>So far we have only talked about the maximum payoffs you may receive, but the actual payments depend on the time when you make your decision. That is where the remaining elements on the screenshot come into play.</p>
+
+      <ul>
+      <li><b>Discounting</b></li>
+      <ul>
+        <li>In general, you will earn less the later you make your decision.</li>
+        <li> If you decide at the very beginning of a period while the timer on the left side of the screen still shows sixty seconds, you will receive the maximum payoff.</li>
+        <li>If you decide at a later point in time, you will only receive the <b>payoff percentage</b> indicated on the right side of the screen.</li>
+        <li>Note that the payoff percentage will decrease when the timer is running. Once the timer reaches zero, the payoff percentage will typically be 20%, but in one block of the experiment, this value is not 20%, but 33.3%.</li>
+        <li>If you make a decision at some point in time, but the other player does not make a decicion before the timer reaches zero, you will earn five points times the payoff percentage shown when you clicked the button.</li>
+        <li> If neither player makes a decision, both will receive five points times the payoff percentage at the end of the period (i.e., 20% or 33.3%).</li><br>
+      </ul>
+      <li><b>Time freezes</b></li>
+      <ul>
+      <li>In general the timer ticks down continuously, but there are two exceptions.</li>
+        <li>The timer does not start until five seconds after the beginning of the period. During these five seconds, the payoff percentage will remain at 100%. The reason is that we want to increase your chances of receiving the maximum payoffs.</li>
+        <li>If the other player decides before you have made your decision, the timer will stop for another five seconds and the payoff percentage will stay constant during this interval. The reason for this procedure is that we want to give you some time to react to the other player's decision.</li>
+        <li>Both time freezes are indicated by the bar labelled <i>5s freeze time</i>. If a time freeze is triggered, the bar will turn green. It will gradually turn gray until the five seconds have elapsed and the bar is completely gray as shown in the screenshot.</li>
+        <br>
+
+      </ul>
+
+
+  <li><b>End of a period</b></li>
+  <ul>
+<li>The period finishes once both players have made their decision or if the timer reaches zero.</li> 
+<li>At this point in time a button labelled <i>Next</i> will appear at the bottom of the screen. It will look identical to the <i>Next</i> on this page. </li>
+  
+  <li>Please note that both players have to click the <i>Next</i> button for the experiment to proceed.</li>
+</ul>
+</ul>
+<br>
+
+{{ next_button }}
+
+{% endblock %}

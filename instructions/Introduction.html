@@ -1,0 +1,105 @@
+{% block title %}
+   <b style="color:grey">General information and rules </b>
+{% endblock %}
+
+{% block app_styles %}
+<style>
+
+
+th {
+    border: 1px solid black;
+    font-size: 16pt;
+    width: 650px;
+    text-align: right;
+    font-weight:normal;
+    }
+
+td {
+    font-size: 14pt;
+    border: 1px solid black;
+    text-align: center;
+    }
+
+table {
+    table-layout: fixed;
+    width: 800px;
+    }
+
+.history td {
+    font-size: 16pt;
+    }
+
+.history th {
+    font-size: 12pt;
+    width: 100px;
+    text-align: center;
+    }
+     .frac {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    letter-spacing: 0.001em;
+    text-align: center;
+}
+.frac > span {
+    display: block;
+    padding: 0.1em;
+}
+.frac span.bottom {
+    border-top: thin solid black;
+}
+.frac span.symbol {
+    display: none;
+}
+
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+<p>On this page, we provides a rough overview of the rules and structure of the experiment. Please read the information carefully. You will need to agree to the rules to proceed with the experiment.</p>
+
+<ul>
+<li><b>Rules</b></li>
+
+<ul>
+    <li>Do not use your phone or similar electronic devices during the experiment.</li>
+    <li>Do not talk to the other participants.</li>
+    <li>If you have a question, please raise your hand. We will then come
+        to you and answer your question in silence. Please do not ask your questions
+        out loud.</li>
+</ul>
+<br>
+<li><b>Structure of the experiment</b></li>
+
+<ul>
+    <li>The experiment is organized in four different blocks. Each block is repeated for {{ num_periods }} periods. Hence, there is a total of {{ tot_periods }} periods.</li>
+    <li>At the beginning of each period you are matched with one random other participant. You only interact with this person in that period. In the next period, you will be matched with another random person.</li>
+    <li>The interactions with the other participants take place in continuous time. That means:</li>
+    <ul>
+        <li>Five seconds after the beginning of a period a timer will start. You have up to 60 seconds to make a single decision.</li>
+        <li>The period finishes once both participants have made their decision or if the timer reaches zero.</li>
+        <li>In general, your profits will be higher the earlier you make your decision.</li>
+    </ul>
+</ul>
+<br>
+</ul>
+<ul>
+<p>Your earnings from the experiment depend on your behavior in the interactions with the other participants (and on the behavior of the other participants). We will explain the details of the interaction on the next pages. For now, we would like you to notice the following.</p>
+<li><b>Payments</b></li>
+<ul>
+    <li>In each period you can earn points.</li>
+    <li>The points are added over all periods.</li>
+    <li>At the end of the experiment, your total points will be converted in Euros at an exchange rate where <b>100 points correspond to x Euros</b>.</li>
+</ul>
+<br>
+
+<li><b>Please answer the following questions to show that you have read and understood the information on this page.</b></li>
+
+{{ formfields }}
+
+</ul>
+
+<button class="otree-btn-next btn btn-primary">Agree and continue</button>
+{% endblock%}

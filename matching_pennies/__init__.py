@@ -8,7 +8,7 @@ Matching pennies game
 class C(BaseConstants):
     NAME_IN_URL = 'matching_pennies'
     PLAYERS_PER_GROUP = 2
-    NUM_ROUNDS = 3
+    NUM_ROUNDS = 1
     eps = 2
     B = 2
     C = 8
@@ -123,39 +123,6 @@ def set_payoffs(group: Group):
 
 
 # PAGES
-class Introduction(Page):
-    form_model = 'player'
-
-    @staticmethod
-    def is_displayed(player):
-        return player.round_number == 1
-
-
-class Instructions1(Page):
-    form_model = 'player'
-
-    @staticmethod
-    def is_displayed(player):
-        return player.round_number == 1
-
-
-class Instructions2(Page):
-    form_model = 'player'
-
-    @staticmethod
-    def is_displayed(player):
-        return player.round_number == 1
-
-
-class Quiz(Page):
-    @staticmethod
-    def is_displayed(player):
-        return player.round_number == 1
-
-    form_model = 'player'
-    form_fields = ['Q1', 'Q2', 'Q3']
-
-
 class WaitPage1(WaitPage):
     template_name = 'matching_pennies/WaitPage1.html'
 
@@ -232,5 +199,5 @@ class ResultsSummary(Page):
         )
 
 
-page_sequence = [Introduction, Instructions1, Instructions2, Quiz, WaitPage1, Choice3,
+page_sequence = [WaitPage1, Choice3,
                  ResultsWaitPage, ResultsSummary]
