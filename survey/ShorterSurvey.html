@@ -1,0 +1,24 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+   Survey
+{% endblock %}
+
+{% block content %}
+    <p>The experiment is almost finished. As a last step, please answer the following questions. On the next page, you will receive the payment information.</p>
+
+    {% formfield player.age %}
+
+    {% formfield player.gender %}
+
+        <br>
+
+    <p>The following questions are optional.</p>
+    {% formfield player.understanding_descriptions label="Please rate the descriptions of the tasks on a scale from 1 (very bad) to 7 (very good)." %}
+    {% formfield player.responsiveness label="Please rate the speed of the website on a scale from 1 (very slow) to 7 (very fast)." %}
+    {% formfield player.problems label="Did you encouter any other problems during the experiment? If yes, please enter a brief description" %}
+
+    {% next_button %}
+
+{% endblock %}

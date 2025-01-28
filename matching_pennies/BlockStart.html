@@ -1,0 +1,96 @@
+
+{{ block title }}
+{{ if player.round_number == 1 }}
+Trial periods
+{{ elif player.round_number == 4}}
+Block 1
+{{ elif player.round_number == 14}}
+Block 2
+{{ elif player.round_number == 24}}
+Block 3
+{{ elif player.round_number == 34}}
+Block 4
+{{ endif }}
+{{ endblock }}
+
+{{ block content }}
+{{ if player.round_number == 1 }}
+    <p>The first 3 rounds are training rounds to get familiar with the game, and it's interface. The results of these rounds will not affect your payment.</p>
+    <p>During the trial periods, we use two different versions of the payoff matrix. In each period, a random draw of the computer will decide if the first or the second version is used in that period.</p>
+{{ elif player.round_number == 4}}
+    <p>The paid part of the experiment is about to start.</p>
+    {{ if player.epsilon == 0 }}
+        <p>In this block, we will use only one version of the payoff matrix. It will be different from the versions used during the trial periods.</p>
+    {{else}}
+        {{if player.epsilon == prev_eps }}
+            <p>In this block, we will use the same two versions of the payoff matrix as in the trial periods.</p>
+        {{else}}
+            <p>In this block, we will use two versions of the payoff matrix again, but they will differ from the versions used in the trial periods.</p>
+        {{endif}}
+    {{endif}}
+    {{if player.delta == prev_del }}
+    <p>The payoff percentage will decrease at the same rate as in the trial periods.</p>
+        {{elif player.delta > prev_del}}
+            <p>The payoff percentage will decrease less quickly compared to the trial periods.</p>
+        {{else}}
+            <p>The payoff percentage will decrease more quickly compared to the trial periods.</p>
+        {{endif}}
+{{ elif player.round_number == 14}}
+    {{ if player.epsilon == 0 }}
+        <p>In this block, we will use only one version of the payoff matrix. It will be different from the versions used during the previous blocks.</p>
+    {{else}}
+        {{if player.epsilon == prev_eps }}
+            <p>In this block, we will use the same two versions of the payoff matrix as in the previous block.</p>
+        {{else}}
+            <p>In this block, we will use two versions of the payoff matrix again, but they will differ from the versions used in the previous block.</p>
+        {{endif}}
+    {{endif}}
+    {{if player.delta == prev_del }}
+        <p>The payoff percentage will decrease at the same rate as in the previous block.</p>
+    {{elif player.delta > prev_del}}
+        <p>The payoff percentage will decrease less quickly compared to the previous block.</p>
+    {{else}}
+        <p>The payoff percentage will decrease more quickly compared to the previous block.</p>
+    {{endif}}
+{{ elif player.round_number == 24}}
+    {{ if player.epsilon == 0 }}
+        <p>In this block, we will use only one version of the payoff matrix. It will be different from the versions used during the previous blocks.</p>
+    {{else}}
+        {{if player.epsilon == prev_eps }}
+            <p>In this block, we will use the same two versions of the payoff matrix as in the previous block.</p>
+        {{else}}
+            <p>In this block, we will use two versions of the payoff matrix again, but they will differ from the versions used in the previous block.</p>
+        {{endif}}
+        {{endif}}
+        {{if player.delta == prev_del }}
+            <p>The payoff percentage will decrease at the same rate as in the previous block.</p>
+        {{elif player.delta > prev_del}}
+            <p>The payoff percentage will decrease less quickly compared to the previous block.</p>
+        {{else}}
+            <p>The payoff percentage will decrease more quickly compared to the previous block.</p>
+        {{endif}}
+{{ elif player.round_number == 34}}
+{{ if player.epsilon == 0 }}
+        <p>In this block, we will use only one version of the payoff matrix. It will be different from the versions used during the previous blocks.</p>
+    {{else}}
+        {{if player.epsilon == prev_eps }}
+            <p>In this block, we will use the same two versions of the payoff matrix as in the previous block.</p>
+        {{else}}
+            <p>In this block, we will use two versions of the payoff matrix again, but they will differ from the versions used in the previous block.</p>
+        {{endif}}
+    {{endif}}
+    {{if player.delta == prev_del }}
+        <p>The payoff percentage will decrease at the same rate as in the previous block.</p>
+    {{elif player.delta > prev_del}}
+        <p>The payoff percentage will decrease less quickly compared to the previous block.</p>
+    {{else}}
+        <p>The payoff percentage will decrease more quickly compared to the previous block.</p>
+    {{endif}}
+{{ endif }}
+
+
+
+{{ next_button }}
+
+
+{{ endblock }}

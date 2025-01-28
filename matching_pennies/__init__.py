@@ -40,6 +40,7 @@ class Player(BasePlayer):
     simultaneous = models.BooleanField(default=False)
     epsilon = models.FloatField()
     delta = models.FloatField()
+    trial_pay = models.CurrencyField()
 
 
 # FUNCTIONS
@@ -80,68 +81,88 @@ def set_payoffs(group: Group):
     #session = group.session
     p1 = group.get_player_by_id(1)
     p2 = group.get_player_by_id(2)
+
+    t1 = p1.time_of_move
+    t2 = p2.time_of_move
+    timeout1 = p1.time_out
+    timeout2 = p2.time_out
+    delta = p1.delta
+    eps = p1.epsilon
+
+    if timeout1:
+        t1 = 65000
+    if timeout2:
+        t2 = 65000
+    if p1.move_in_beginning:
+        t1 = 0
+    else:
+        t1 = max(t1 - 5000, 0)
+    if p2.move_in_beginning:
+        t2 = 0
+    else:
+        t2 = max(t2 - 5000, 0)
+
+    if t1 >= t2:
+        if (t1 - t2) < 5000:
+            t1 = t2
+        else:
+            t1 = t1 - 5000
+    if t2 > t1:
+        if (t2 - t1) < 5000:
+            t2 = t1
+        else:
+            t2 = t2 - 5000
+
+    factor1 = 1 - (1 - delta) * (min(t1, 60000) / 60000)
+    factor2 = 1 - (1 - delta) * (min(t2, 60000) / 60000)
+    if p1.time_out or p2.time_out:
+        if p1.time_out and p2.time_out:
+            p1.trial_pay = ((C.B + C.C) / 2) * delta
+            p2.trial_pay = ((C.B + C.C) / 2) * delta
+        elif p1.time_out:
+            p1.trial_pay = ((C.B + C.C) / 2) * delta
+            p2.trial_pay = ((C.B + C.C) / 2) * factor2
+        elif p2.time_out:
+            p1.trial_pay = ((C.B + C.C) / 2) * factor1
+            p2.trial_pay = ((C.B + C.C) / 2) * delta
+    else:
+        if p1.penny_side:
+            if p2.penny_side:
+                p1.trial_pay = C.B + eps * factor1
+                p2.trial_pay = C.C * factor2
+            else:
+                p1.trial_pay = C.C * factor1
+                p2.trial_pay = C.B * factor2
+        else:
+            if p2.penny_side:
+                p1.trial_pay = C.C * factor1
+                p2.trial_pay = C.B * factor2
+            else:
+                p1.trial_pay = C.B * factor1
+                p2.trial_pay = C.C * factor2
+   
     if p1.round_number > 3:
-        t1 = p1.time_of_move
-        t2 = p2.time_of_move
-        timeout1 = p1.time_out
-        timeout2 = p2.time_out
-        delta = p1.delta
-        eps = p1.epsilon
+        p1.payoff = p1.trial_pay
+        p2.payoff = p2.trial_pay
 
-        if timeout1:
-            t1 = 65000
-        if timeout2:
-            t2 = 65000
-        if p1.move_in_beginning:
-            t1 = 0
-        else:
-            t1 = max(t1 - 5000, 0)
-        if p2.move_in_beginning:
-            t2 = 0
-        else:
-            t2 = max(t2 - 5000, 0)
-
-        if t1 >= t2:
-            if (t1 - t2) < 5000:
-                t1 = t2
-            else:
-                t1 = t1 - 5000
-        if t2 > t1:
-            if (t2 - t1) < 5000:
-                t2 = t1
-            else:
-                t2 = t2 - 5000
-
-        factor1 = 1 - (1 - delta) * (min(t1, 60000) / 60000)
-        factor2 = 1 - (1 - delta) * (min(t2, 60000) / 60000)
-        if p1.time_out or p2.time_out:
-            if p1.time_out and p2.time_out:
-                p1.payoff = ((C.B + C.C) / 2) * delta
-                p2.payoff = ((C.B + C.C) / 2) * delta
-            elif p1.time_out:
-                p1.payoff = ((C.B + C.C) / 2) * delta
-                p2.payoff = ((C.B + C.C) / 2) * factor2
-            elif p2.time_out:
-                p1.payoff = ((C.B + C.C) / 2) * factor1
-                p2.payoff = ((C.B + C.C) / 2) * delta
-        else:
-            if p1.penny_side:
-                if p2.penny_side:
-                    p1.payoff = C.B + eps * factor1
-                    p2.payoff = C.C * factor2
-                else:
-                    p1.payoff = C.C * factor1
-                    p2.payoff = C.B * factor2
-            else:
-                if p2.penny_side:
-                    p1.payoff = C.C * factor1
-                    p2.payoff = C.B * factor2
-                else:
-                    p1.payoff = C.B * factor1
-                    p2.payoff = C.C * factor2
-
+ 
 
 # PAGES
+class BlockStart(Page):
+    @staticmethod
+    def is_displayed(player: Player):
+        temp = [1,4,14,24,34]
+        return any(player.round_number == x for x in temp)
+    
+    @staticmethod
+    def vars_for_template(player):
+        if player.round_number > 1:
+            prev_round = player.in_round(player.round_number - 1)
+            return dict(
+                prev_eps = prev_round.epsilon,
+                prev_del = prev_round.delta
+            )
+
 class Choice3(Page):
     form_model = 'player'
     form_fields = ['penny_side', 'time_of_move', 'move_in_beginning', 'time_out', 'simultaneous']
@@ -269,4 +290,4 @@ class ResultsSummary(Page):
         )
 
 
-page_sequence = [Choice3, WaitPage1, RoundSummary, ResultsWaitPage, ResultsSummary]
+page_sequence = [BlockStart,ResultsWaitPage,Choice3, WaitPage1, RoundSummary, ResultsWaitPage, ResultsSummary]
