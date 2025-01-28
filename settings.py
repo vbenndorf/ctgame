@@ -27,7 +27,7 @@ SESSION_CONFIG_DEFAULTS = dict(
     real_world_currency_per_point=1.00, participation_fee=0.00, doc=""
 )
 
-PARTICIPANT_FIELDS = []
+PARTICIPANT_FIELDS = ['treatments']
 SESSION_FIELDS = []
 
 # ISO-639 code
@@ -36,7 +36,7 @@ LANGUAGE_CODE = 'en'
 
 # e.g. EUR, GBP, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = 'EUR'
-USE_POINTS = False
+USE_POINTS = True
 
 ROOMS = [
     dict(

@@ -1,0 +1,14 @@
+
+{{ block title }}Results of Round {{ player.round_number }}  {{ endblock }}
+{{ block content }}
+
+{{ if player.round_number < 4 }} <div style="font-style: italic"> The first 3 rounds are training rounds to get familiar with the game, and it's interface. The payoff for these rounds is not received. </div> <br>{{ endif }}
+
+
+In this round you {{ if player.time_out == 1 }} did not make a decision during the game{{ else }} chose {{ move }} after {{ time |to1 }} seconds and your opponent {{ if op_time_out }} did not make a move{{ else }} chose {{op_move}}{{ endif }}{{ endif }}.
+<br>
+This results in a payoff of {{ player.payoff }}.
+<br>
+<br>
+{{ next_button }}
+{{ endblock }}

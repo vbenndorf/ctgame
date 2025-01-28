@@ -1,0 +1,67 @@
+{% block title %}
+   <b style="color:grey"> Information </b>
+{% endblock %}
+
+{% block app_styles %}
+<style>
+
+th {
+    border: 1px solid black;
+    font-size: 10pt;
+    width: 200px;
+    text-align: center;
+    font-weight:bold;
+    background-color: lightgray;
+    }
+
+td {
+    font-size: 10pt;
+    border: 1px solid black;
+    text-align: center;
+    }
+
+table {
+    table-layout: fixed;
+    width: 600px;
+    }
+
+.history td {
+    font-size: 16pt;
+    }
+
+.history th {
+    font-size: 12pt;
+    width: 100px;
+    text-align: center;
+    }
+.frac > span {
+    display: block;
+    padding: 0.1em;
+}
+.frac span.bottom {
+    border-top: thin solid black;
+}
+.frac span.symbol {
+    display: none;
+}
+img {
+  border: 5px solid #888;
+}
+
+.button_replacement {
+  padding-left: 4px;
+  padding-right: 4px;
+  
+  color:red; background-color:#f0c0c0; display:inline-block;
+  font-weight: bold;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div style="font-weight: bold"> Important note:</div>
+The following experiments performed at FernUni Hagen are <span style="font-weight: bold">not</span> incentivized. That means no real money is paid to the participants.
+<br>
+<br>
+{{ next_button }}
+{% endblock %}

@@ -27,10 +27,12 @@ class Player(BasePlayer):
 
 # FUNCTIONS
 # PAGES
+class Instructions0(Page):
+    pass
 class MyPage(Page):
     pass
 
 
 
 
-page_sequence = [MyPage]
+page_sequence = [Instructions0, MyPage]

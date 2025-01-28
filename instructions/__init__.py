@@ -44,13 +44,11 @@ class Introduction(Page):
     @staticmethod
     def vars_for_template(player: Player):
         vars = dict(
-            num_periods = player.session.config['periods_per_block'],
-            tot_periods = 4*player.session.config['periods_per_block'],
+            num_periods=player.session.config['periods_per_block'],
+            tot_periods=4*player.session.config['periods_per_block']+3,
         )
         return(vars)
     
-
-
 
 class Instructions1(Page):
     pass
@@ -68,4 +66,5 @@ class Quiz(Page):
 
 
 
-page_sequence = [Introduction, Instructions1, Instructions2, Quiz]
+#page_sequence = [Introduction, Instructions1, Quiz]
+page_sequence = [Introduction, Instructions1]
