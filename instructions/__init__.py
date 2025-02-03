@@ -52,7 +52,7 @@ def Inst1Q2_error_message(player, value):
         return 'The answer is not correct. Please read the information on this page carefully.'
     
 def Inst1Q3_error_message(player, value):
-    if value != 240:
+    if value != 200:
         return 'The answer is not correct. Please read the information on this page carefully.'    
 
 def Inst2Q1_error_message(player, value):
