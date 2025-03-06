@@ -128,7 +128,7 @@ def set_payoffs(group: Group):
     else:
         if p1.penny_side:
             if p2.penny_side:
-                p1.trial_pay = C.B + eps * factor1
+                p1.trial_pay = (C.B + eps) * factor1
                 p2.trial_pay = C.C * factor2
             else:
                 p1.trial_pay = C.C * factor1

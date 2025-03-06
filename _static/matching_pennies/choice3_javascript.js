@@ -15,7 +15,7 @@ var button2_2_start = document.getElementById('button2_2_start');
 var simultaneous = false; //variable if moves are made simultaneous or not
 //initialize both  "timer" object
 timer = startTimer(60, "timer", function() {timeOut()}); //timer object
-factor = startFactor(60, 0.2, "factor", function() {}); //payoff factor object (percentage)
+factor = startFactor(60, js_vars.delta, "factor", function() {}); //payoff factor object (percentage)
 //style timer according to starting paused
 document.getElementById("outer-circle").style.background = "#696969";
 document.getElementById("timer").style.color = "#696969";
