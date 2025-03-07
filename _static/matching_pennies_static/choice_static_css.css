@@ -1,0 +1,191 @@
+.button1 {
+      background-color: #f0c0c0;
+      border: none;
+      border-radius: 3px;
+      color: red;
+      padding: 0;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 19px;
+      font-weight: bold;
+      margin: 4px 2px;
+      transition-duration: 0.2s;
+      cursor: pointer;
+      width: 55px;
+      height: 30px;
+      opacity: 80%;
+    }
+    .button1:hover {
+      background-color: #bd8484;
+    }
+
+   .button2 {
+      background-color: #f0c0c0;
+      border: none;
+      border-radius: 3px;
+      color: red;
+      padding: 0;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 19px;
+      font-weight: bold;
+      margin: 4px 4px 4px 4px;
+      transition-duration: 0.2s;
+      cursor: pointer;
+      width: 55px;
+      height: 30px;
+      opacity: 80%;
+    }
+    .button2:hover {
+      background-color: #bd8484;
+    }
+
+    .button_replacement {
+        padding-left: 4px;
+        padding-right: 4px;
+        line-height: 37.2px;
+    }
+
+    .timer_elements{
+        float: left;
+        padding:20px 20px 0px 20px;
+
+    }
+    #outer-circle {
+       background: green;
+       border-radius: 50%;
+       height: 60px;
+       width: 60px;
+       position: relative;
+       display: inline-block;
+       margin-left: 10px;
+       vertical-align: middle;
+       margin-bottom: 10px;
+    #outer-circle.waiting-animation{
+        animation: waiting1 5s 1 linear;
+    }
+
+      @keyframes waiting1 {
+          from {background-color: green;}
+          to {background-color: red;}
+    }
+
+     }
+     #inner-circle {
+       position: absolute;
+       background: antiquewhite;
+       border-radius: 50%;
+       height: 52px;
+       width: 52px;
+       text-align: center;
+       line-height: 52px;
+       font-size: 20px;
+       color: #fff;
+       top: 50%;
+       left: 50%;
+       margin: -26px 0px 0px -26px;
+     }
+
+     .timebar_frame{
+      display: inline-block;
+      width: 80px;
+      height: 20px;
+      background-color: gray;
+      position: relative;
+      bottom: 0px;
+      left: 0px;
+      vertical-align: middle;
+     }
+
+    .timebar {
+      display: inline-block;
+      width: 80px;
+      height: 20px;
+      background-color: gray;
+      position: relative;
+      bottom: 0px;
+      left: 0px;
+    }
+
+    .timebar.active-animation {
+        animation: anim1 5s 1 linear;
+    }
+
+    @keyframes anim1 {
+      from {background-color: green;}
+      to {background-color: green;
+            width: 0;}
+    }
+
+    @keyframes idle { 100% {}
+    }
+
+    .lower-circle {
+       position: relative;
+       display:inline-block;
+       background: black;
+       border-radius: 50%;
+       height: 60px;
+       width: 60px;
+       text-align: center;
+       line-height: 60px;
+       font-size: 14px;
+       color: lightgrey;
+       margin-left: 35px;
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+    th {
+        border: none;
+        background-color: white;
+        color: black;
+        font-weight: bold;
+        font-size: 19px;
+        padding: 3px 10px 3px 10px;
+        text-align: center;
+    }
+    td {
+        border: 1px solid black;
+        background-color: white;
+        color: black;
+        font-weight: bold;
+        font-size: 19px;
+        padding: 3px 10px 3px 10px;
+        text-align: center;
+    }
+    #tables
+    {
+       float:left;
+        padding:0px 20px 0px 20px;
+        display:inline-block
+    }
+
+#matrix1_heads{
+    animation: mymove 1.5s 1;
+}
+@keyframes mymove {
+  50% {font-size: 22px; color: red;}
+}
+#matrix1_tails{
+    animation: mymove 1.5s 1;
+}
+@keyframes mymove {
+  50% {font-size: 22px; color: red;}
+}
+
+#matrix1_heads{
+    animation: mymove 1.5s 1;
+}
+@keyframes mymove {
+  50% {font-size: 22px; color: red;}
+}
+#matrix2_tails{
+    animation: mymove 1.5s 1;
+}
+@keyframes mymove {
+  50% {font-size: 22px; color: red;}
+}

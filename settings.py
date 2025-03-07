@@ -18,6 +18,14 @@ SESSION_CONFIGS = [
         real_world_currency_per_point=0.0005,
     ),
     dict(
+            name='matching_pennies_static',
+            display_name="Matching Pennies (static) game only",
+            app_sequence=['matching_pennies_static'],
+            num_demo_participants=2,
+            periods_per_block=10,
+            real_world_currency_per_point=0.0005,
+        ),
+    dict(
         name='survey',
         display_name='Survey',
         app_sequence=['survey'],
