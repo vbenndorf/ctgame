@@ -7,14 +7,14 @@ SESSION_CONFIGS = [
         display_name="Only Instructions",
         app_sequence=['nopay','informed_consent', 'instructions'],
         num_demo_participants=1,
-        periods_per_block=10,
+        periods_per_block=12,
     ),
     dict(
         name='matching_pennies',
         display_name="Matching Pennies game only",
-        app_sequence=['matching_pennies'],
+        app_sequence=['matching_pennies', 'survey'],
         num_demo_participants=2,
-        periods_per_block=10,
+        periods_per_block=1,
         real_world_currency_per_point=0.0005,
     ),
     dict(
@@ -22,7 +22,7 @@ SESSION_CONFIGS = [
             display_name="Matching Pennies (static) game only",
             app_sequence=['matching_pennies_static'],
             num_demo_participants=2,
-            periods_per_block=10,
+            periods_per_block=1,
             real_world_currency_per_point=0.0005,
         ),
     dict(
@@ -36,7 +36,7 @@ SESSION_CONFIGS = [
         display_name="Complete experiment",
         app_sequence=['nopay','informed_consent', 'instructions','matching_pennies','survey'],
         num_demo_participants=2,
-        periods_per_block=10,
+        periods_per_block=12,
         real_world_currency_per_point=0.0005,
     )
 ]

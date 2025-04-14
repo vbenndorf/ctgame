@@ -59,7 +59,7 @@ img {
 {% endblock %}
 
 {% block content %}
-  <b>Read these instructions carefully.</b> You will have to successfully answer some questions that check your understanding of the instructions before you can proceed on to the study.  If you have any questions let the instructor know.
+<p>Read these instructions carefully. You will again have to answer some questions. </p>
 
   <p>Here is a screenshot of the screen where you make your decision</p>
 
@@ -69,33 +69,35 @@ img {
 
 <b>Description</b>:
 
-<p>So far we have only talked about the maximum payoffs you may receive, but the actual payments depend on the time when you make your decision. That is where the remaining elements on the screenshot come into play.</p>
+<p>So far, we have only talked about the baseline payoffs you may receive, but the actual payments also depend on the time when you make your decision.  </p>
 
       <ul>
       <li><b>Discounting</b></li>
       <ul>
         <li>In general, you will earn less the later you make your decision.</li>
-        <li> If you decide at the very beginning of a period while the timer on the left side of the screen still shows sixty seconds, you will receive the maximum payoff.</li>
-        <li>If you decide at a later point in time, you will only receive the <b>payoff percentage</b> indicated on the right side of the screen. (For example, if you chose Heads and your opponent chooses Tails, your maximum payoff is 800 points. With a payoff percentage of 75%, you would receive 800⋅75% = 600 points.)  </li>
-        <li>Note that the payoff percentage will decrease when the timer is running. Once the timer reaches zero, the payoff percentage will typically be 20%, but in one block of the experiment, this value is not 20%, but 33.3%.</li>
+        <li> If you decide at the very beginning of a round while the timer on the left side of the screen still shows sixty seconds, you will receive the maximum payoff.</li>
+        <li>If you decide at a later point in time, you will receive the baseline payoff, multiplied with the Payoff percentage indicated on the right side of the screen. The Payoff percentage decreases as the timer runs. </li>
+        <li>For example, if you choose Heads and your opponent chooses Tails, your baseline payoff is 800 points. With a payoff percentage of 75% at the time when you make your choice, you receive 800⋅75% = 600 points.</li>
+        <li>Once the timer reaches zero, the payoff percentage will typically be 20%, but in one block of the experiment, this value is 33.3%.</li>
         <li>If you make a decision at some point in time, but the other player does not make a decision before the timer reaches zero, you will earn 500 points times the payoff percentage shown when you clicked the button.</li>
-        <li> If neither player makes a decision, both will receive 500 points times the payoff percentage at the end of the period (i.e., 20% or 33.3%).</li><br>
+        <li> If neither player makes a decision, both will receive 500 points times the payoff percentage at the end of the round (i.e., 20% or 33.3%). Hence, 100 or 167 points respectively.</li><br>
       </ul>
       <li><b>Time freezes</b></li>
       <ul>
-      <li>In general the timer ticks down continuously, but there are two exceptions.</li>
-        <li>The timer does not start until five seconds after the beginning of the period. During these five seconds, the payoff percentage will remain at 100%. The reason is that we want to increase your chances of receiving the maximum payoffs.</li>
-        <li>If the other player decides before you have made your decision, the timer will stop for another five seconds and the payoff percentage will stay constant during this interval. The reason for this procedure is that we want to give you some time to react to the other player's decision.</li>
-        <li>Both time freezes are indicated by the bar labelled <i>5s freeze time</i>. If a time freeze is triggered, the bar will turn green. It will gradually turn gray until the five seconds have elapsed and the bar is completely gray as shown in the screenshot.</li>
+      <li>In general, the timer ticks down continuously, but there are two exceptions.</li>
+        <li>The timer does not start until five seconds after the beginning of the round. During these five seconds, the “5s time freeze” bar on the left will be active (in green) and the payoff percentage will remain at 100%.  If you choose an action during these initial 5 seconds, you obtain your full baseline payoff, but you do not observe the choice of the other player (in case the other player also chooses an action during these 5 seconds).</li>
+        <li>If you do not choose an action during the initial 5s freeze time, and the other player chooses an action before you do, the timer will stop for another five seconds, and the 5s freeze time bar will be activated again. The payoff percentage will stay constant during these 5 seconds, so that you can react to the other player’s decision without losing any payoff. </li>
+        <li>If the other player chooses an action within the initial 5s freeze time at the beginning of the round and you do not, the action choice of the other player will be shown to you after these 5 seconds have elapsed. Then another 5s time freeze starts so that you can respond to the other player’s action without losing payoff due to the elapse of time.</li>
+        <li>Your actions are shown in the same way to the other player.</li>
         <br>
 
       </ul>
 
 
-  <li><b>End of a period</b></li>
+  <li><b>End of a round</b></li>
   <ul>
-<li>The period finishes once both players have made their decision or if the timer reaches zero.</li> 
-<li>At this point in time a button labelled <i>Next</i> will appear at the bottom of the screen. It will look identical to the <i>Next</i> on this page. </li>
+<li>The round finishes once both players have made their decision, or if the timer reaches zero.</li> 
+<li>A “Next button” will appear. Both players have to click their Next button for the experiment to proceed.</li>
   
   <li>Please note that both players have to click the <i>Next</i> button for the experiment to proceed.</li>
 </ul>

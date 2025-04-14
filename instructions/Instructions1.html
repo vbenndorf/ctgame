@@ -59,40 +59,38 @@ img {
 {% endblock %}
 
 {% block content %}
-  <b>Read these instructions carefully.</b> You will have to successfully answer some questions that check your understanding of the instructions before you can proceed on to the study.  If you have any questions let the instructor know.
-
-  <p>Here is a screenshot of the screen where you make your decision</p>
+  <p>Read these instructions carefully. Below, you will have to answer some questions that check your understanding. Here is a screenshot of the screen where you will make your decision:</p>
 
   <img src=https://i.ibb.co/YhXFLmL/screenshot.png>
 
   <br><br>
 
 <b>Description</b>:
-<p>The most important information is the <b>Payoff matrix</b> in the center of the screen. Here you can make your decision and see the maximum payoffs you and the other player can earn if given cell of the matrix is reached.</p>
+<p>The most important information is the <b>Payoff table</b> in the center of the screen. Here you can make your decision and see the baseline payoffs you and the other player can earn if a given cell of the table is reached.</p>
 <ul>
       <li><b>How to make a decision</b></li>
   <ul>
-    <li>In this game, you will select a row of the matrix and the other player will select a column.</li>
+    <li>In this game, you will select a row of the matrix and the other player will select a column./li>
     <li>You can choose between <span class="button_replacement">Heads</span> and  <span class="button_replacement">Tails</span> by clicking on the corresponding buttons in the row headers (first column of the matrix). </li>
     <li>Clicking on the column headers will do nothing.</li>
-    <li>If you decide before the other player, the other player will be informed whether you chose <i>Heads</i> or <i>Tails</i>. Of course, the same applies to you if the other players makes a decision before you do.</li>
+    <li>If you decide before the other player, the other player will be informed whether you chose Heads or Tails. If the other player makes a decision before you, you will be informed about it.</li>
     <br>
   </ul>
-  <li><b>Interpretation of the maximum payoffs</b></li>
+  <li><b>Interpretation of the baseline payoffs</b></li>
   <ul>
-    <li>The red entries show your payoffs. The black entries are the payoffs of the other player.</li>
-    <li>For example, the upper left cell is reached if you and the other player both choose <i>Heads</i>. In this case, you can earn up to 240 points whereas the other player can earn up to 800 points.</li>
-    <li>The upper right cell is reached if you choose <i>Heads</i> while the other player chooses <i>Tails</i>. In this case, you can earn up to 800 points  whereas the other player can earn up to 200 points.</li>
-  <li>The values in the matrix may vary across periods.</li>
+    <li>The red entries show your “baseline payoffs”. The black entries are the baseline payoffs of the other player.</li>
+    <li>For example, the upper left cell is reached if you and the other player both choose Heads. In this case, you can earn up to 240 points whereas the other player can earn up to 800 points.</li>
+    <li>The upper right cell is reached if you choose Heads while the other player chooses Tails. In this case, you can earn up to 800 points whereas the other player can earn up to 200 points.</li>
+  <li>Note that there may be subtle changes of the baseline payoffs across rounds.</li>
   </ul>
 <br>
 
-<li><b>Please answer the following questions to show that you have read and understood the information on this page.</b></li>
+<li><b>Please answer the following questions on the version shown in the screenshot to show that you have read and understood the information on this page.</b></li>
 
 {{ formfields }}
 </ul>
 
-<p>The next page will discuss the details on the remaining elements of the decision screen.</p>
+<p>The next page will explain the remaining details.</p>
 {{ next_button }}
 
 {% endblock %}
