@@ -8,7 +8,7 @@ Matching pennies game
 class C(BaseConstants):
     NAME_IN_URL = 'matching_pennies'
     PLAYERS_PER_GROUP = 2
-    NUM_ROUNDS = 43
+    NUM_ROUNDS = 53
     B = 200
     C = 800
     PLAYER1_ROLE = 'Player 1'

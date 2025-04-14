@@ -8,14 +8,19 @@ SESSION_CONFIGS = [
         app_sequence=['nopay','informed_consent', 'instructions'],
         num_demo_participants=1,
         periods_per_block=12,
+        participation_fee = 6,
     ),
     dict(
         name='matching_pennies',
         display_name="Matching Pennies game only",
-        app_sequence=['matching_pennies', 'survey'],
+        app_sequence=['matching_pennies', 'survey', 'payment'],
         num_demo_participants=2,
         periods_per_block=1,
-        real_world_currency_per_point=0.0005,
+        real_world_currency_per_point=0.0007,
+        participation_fee = 6,
+        expShortName="TestExp", # Replace with your values
+        expId=0000000000, # Replace with your values
+        sessId=0000000000, # Replace with your values
     ),
     dict(
             name='matching_pennies_static',
@@ -23,7 +28,8 @@ SESSION_CONFIGS = [
             app_sequence=['matching_pennies_static'],
             num_demo_participants=2,
             periods_per_block=1,
-            real_world_currency_per_point=0.0005,
+            real_world_currency_per_point=0.0007,
+            participation_fee = 6,
         ),
     dict(
         name='survey',
@@ -37,7 +43,8 @@ SESSION_CONFIGS = [
         app_sequence=['nopay','informed_consent', 'instructions','matching_pennies','survey'],
         num_demo_participants=2,
         periods_per_block=12,
-        real_world_currency_per_point=0.0005,
+        real_world_currency_per_point=0.0007,
+        participation_fee = 6,
     )
 ]
 
