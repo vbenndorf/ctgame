@@ -61,7 +61,8 @@ img {
 {% block content %}
   <p>Read these instructions carefully. Below, you will have to answer some questions that check your understanding. Here is a screenshot of the screen where you will make your decision:</p>
 
-  <img src=https://i.ibb.co/YhXFLmL/screenshot.png>
+  <!-- <img src=https://i.ibb.co/YhXFLmL/screenshot.png> -->
+  <img src="{{ static 'global/screenshot_info.png' }}"/>
 
   <br><br>
 
@@ -70,8 +71,8 @@ img {
 <ul>
       <li><b>How to make a decision</b></li>
   <ul>
-    <li>In this game, you will select a row of the matrix and the other player will select a column./li>
-    <li>You can choose between <span class="button_replacement">Heads</span> and  <span class="button_replacement">Tails</span> by clicking on the corresponding buttons in the row headers (first column of the matrix). </li>
+    <li>In this game, you will select a row of the table and the other player will select a column.</li>
+    <li>You can choose between <span class="button_replacement">Heads</span> and  <span class="button_replacement">Tails</span> by clicking on the corresponding buttons in the row headers (first column of the table). </li>
     <li>Clicking on the column headers will do nothing.</li>
     <li>If you decide before the other player, the other player will be informed whether you chose Heads or Tails. If the other player makes a decision before you, you will be informed about it.</li>
     <br>

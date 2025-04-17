@@ -5,7 +5,7 @@ SESSION_CONFIGS = [
     dict(
         name='info_only',
         display_name="Only Instructions",
-        app_sequence=['nopay','informed_consent', 'instructions'],
+        app_sequence=['informed_consent', 'instructions'],
         num_demo_participants=1,
         periods_per_block=12,
         participation_fee = 6,
@@ -40,7 +40,7 @@ SESSION_CONFIGS = [
     dict(
         name='experiment',
         display_name="Complete experiment",
-        app_sequence=['nopay','informed_consent', 'instructions','matching_pennies','survey'],
+        app_sequence=['informed_consent', 'instructions','matching_pennies','survey'],
         num_demo_participants=2,
         periods_per_block=12,
         real_world_currency_per_point=0.0007,
