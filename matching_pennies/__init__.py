@@ -54,23 +54,23 @@ def creating_session(subsession: Subsession):
             participant = player.participant
             participant.treatment = treatment_list  #store randomized list of treatments in participant field which is persistent over all rounds
 
-    if subsession.round_number <= 3: #training rounds
+    if subsession.round_number <= 5: #training rounds
         for player in subsession.get_players():
             player.epsilon = 40
             player.delta = 0.2
-    if 4 <= subsession.round_number <= 13:
+    if 6 <= subsession.round_number <= 17:
         for player in subsession.get_players():
             player.epsilon = player.participant.treatment[0][0]
             player.delta = player.participant.treatment[0][1]
-    if 14 <= subsession.round_number <= 23:
+    if 18 <= subsession.round_number <= 29:
         for player in subsession.get_players():
             player.epsilon = player.participant.treatment[1][0]
             player.delta = player.participant.treatment[1][1]
-    if 24 <= subsession.round_number <= 33:
+    if 30 <= subsession.round_number <= 41:
         for player in subsession.get_players():
             player.epsilon = player.participant.treatment[2][0]
             player.delta = player.participant.treatment[2][1]
-    if subsession.round_number >= 34:
+    if subsession.round_number >= 42:
         for player in subsession.get_players():
             player.epsilon = player.participant.treatment[3][0]
             player.delta = player.participant.treatment[3][1]
