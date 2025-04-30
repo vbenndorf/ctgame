@@ -13,7 +13,7 @@ SESSION_CONFIGS = [
     dict(
         name='matching_pennies',
         display_name="Matching Pennies game only",
-        app_sequence=['matching_pennies', 'survey', 'payment'],
+        app_sequence=['matching_pennies'],
         num_demo_participants=2,
         periods_per_block=1,
         real_world_currency_per_point=0.0007,
@@ -40,11 +40,14 @@ SESSION_CONFIGS = [
     dict(
         name='experiment',
         display_name="Complete experiment",
-        app_sequence=['informed_consent', 'instructions','matching_pennies','survey'],
+        app_sequence=['informed_consent', 'instructions','matching_pennies','survey', 'payment'],
         num_demo_participants=2,
         periods_per_block=12,
         real_world_currency_per_point=0.0007,
         participation_fee = 6,
+        expShortName="CTG",
+        expId=28, # Replace with your values
+        sessId=235, # Replace with your values
     )
 ]
 

@@ -16,7 +16,7 @@ Block 4
 {{ block content }}
 {{ if player.round_number == 1 }}
     <p>The first 5 rounds are training rounds to get familiar with the game, and its interface. The results of these rounds will not affect your payment.</p>
-    <p>During the trial rounds, we use two different versions of the payoff table. In each round, a random draw of the computer will decide if the first or the second version is used in that period.</p>
+    <p>During the trial rounds, we use two different versions of the payoff table. In each round, a random draw of the computer will decide if the first or the second version is used in that round.</p>
 {{ elif player.round_number == 6}}
     <p>The paid part of the experiment is about to start.</p>
     {{ if player.epsilon == 0 }}

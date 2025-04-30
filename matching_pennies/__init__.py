@@ -151,7 +151,7 @@ def set_payoffs(group: Group):
 class BlockStart(Page):
     @staticmethod
     def is_displayed(player: Player):
-        temp = [1,4,14,24,34]
+        temp = [1,6,18,30,42]
         return any(player.round_number == x for x in temp)
     
     @staticmethod
