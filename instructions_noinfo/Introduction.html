@@ -1,0 +1,103 @@
+{% block title %}
+   <b style="color:grey">General information and rules </b>
+{% endblock %}
+
+{% block app_styles %}
+<style>
+
+
+th {
+    border: 1px solid black;
+    font-size: 16pt;
+    width: 650px;
+    text-align: right;
+    font-weight:normal;
+    }
+
+td {
+    font-size: 14pt;
+    border: 1px solid black;
+    text-align: center;
+    }
+
+table {
+    table-layout: fixed;
+    width: 800px;
+    }
+
+.history td {
+    font-size: 16pt;
+    }
+
+.history th {
+    font-size: 12pt;
+    width: 100px;
+    text-align: center;
+    }
+     .frac {
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    letter-spacing: 0.001em;
+    text-align: center;
+}
+.frac > span {
+    display: block;
+    padding: 0.1em;
+}
+.frac span.bottom {
+    border-top: thin solid black;
+}
+.frac span.symbol {
+    display: none;
+}
+
+
+</style>
+
+{% endblock %}
+
+{% block content %}
+<p>On this page, we provide a rough overview of the rules and structure of the experiment. Please read the information carefully. You will need to agree to the rules to proceed with the experiment.</p>
+
+<ul>
+    <li><b>Rules</b></li>
+
+<ul>
+    <li>Do not use your phone or similar electronic devices during the experiment.</li>
+    <li>Do not talk to the other participants.</li>
+    <li>If you have a question, raise your hand. We will come to you and answer your question. Please do not ask your questions out loud.</li>
+</ul>
+<br>
+<li><b>Structure of the experiment</b></li>
+
+<ul>
+    <li>In the beginning, there are 5 training rounds that do not count for your final payoff. Then the actual experiment starts, that consists of 4 blocks. Each block consists of 12 rounds. Including the training rounds, there is a total of 53 rounds. </li>
+    <li>In each round, you are matched with one random other participant.</li>
+    <li>The interactions with the other participants take place in continuous time. That means:</li>
+    <ul>
+        <li>Five seconds after the beginning of a new round, a timer will start. You can make your decision within 60 seconds.</li>
+        <li>The round ends once both participants have made their decision, or if the timer reaches zero.</li>
+        <li>In general, your profits will be higher the earlier you make your decision.</li>
+    </ul>
+</ul>
+</ul>
+<p>We will explain the details of the interaction on the next pages. For now, we would like you to notice the following.</p>
+<ul>
+    
+<li><b>Payments</b></li>
+<ul>
+    <li>In each round you can earn points.</li>
+    <li>The points are added over all rounds (except the 5 training rounds).</li>
+    <li>At the end of the experiment, your total points will be converted to Euros such that <b>1000 points correspond to 0.7 Euros.</b></li>
+</ul>
+<br>
+
+<li><b>Please answer the following questions to show that you have read and understood the information on this page.</b></li>
+
+{{ formfields }}
+
+</ul>
+
+<button class="otree-btn-next btn btn-primary">Agree and continue</button>
+{% endblock%}

@@ -11,6 +11,14 @@ SESSION_CONFIGS = [
         participation_fee = 6,
     ),
     dict(
+        name='instr_noinfo',
+        display_name="Only Instructions NoInfo",
+        app_sequence=['informed_consent', 'instructions_noinfo'],
+        num_demo_participants=1,
+        periods_per_block=12,
+        participation_fee = 6,
+    ),
+    dict(
         name='matching_pennies',
         display_name="Matching Pennies game only",
         app_sequence=['matching_pennies'],

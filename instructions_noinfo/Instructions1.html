@@ -1,0 +1,97 @@
+{% block title %}
+   <b style="color:grey"> How to earn money (1/2)</b>
+{% endblock %}
+
+{% block app_styles %}
+<style>
+
+th {
+    border: 1px solid black;
+    font-size: 10pt;
+    width: 200px;
+    text-align: center;
+    font-weight:bold;
+    background-color: lightgray;
+    }
+
+td {
+    font-size: 10pt;
+    border: 1px solid black;
+    text-align: center;
+    }
+
+table {
+    table-layout: fixed;
+    width: 600px;
+    }
+
+.history td {
+    font-size: 16pt;
+    }
+
+.history th {
+    font-size: 12pt;
+    width: 100px;
+    text-align: center;
+    }
+.frac > span {
+    display: block;
+    padding: 0.1em;
+}
+.frac span.bottom {
+    border-top: thin solid black;
+}
+.frac span.symbol {
+    display: none;
+}
+img {
+  border: 5px solid #888;
+}
+
+.button_replacement {
+  padding-left: 4px;
+  padding-right: 4px;
+  
+  color:red; background-color:#f0c0c0; display:inline-block;
+  font-weight: bold;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+  <p>Read these instructions carefully. Below, you will have to answer some questions that check your understanding. Here is a screenshot of the screen where you will make your decision:</p>
+
+  <!-- <img src=https://i.ibb.co/YhXFLmL/screenshot.png> -->
+  <img src="{{ static 'global/screenshot_info.png' }}"/>
+
+  <br><br>
+
+<b>Description</b>:
+<p>The most important information is the <b>Payoff table</b> in the center of the screen. Here you can make your decision and see the baseline payoffs you and the other player can earn if a given cell of the table is reached.</p>
+<ul>
+      <li><b>How to make a decision</b></li>
+  <ul>
+    <li>In this game, you will select a row of the table and the other player will select a column.</li>
+    <li>You can choose between <span class="button_replacement">Heads</span> and  <span class="button_replacement">Tails</span> by clicking on the corresponding buttons in the row headers (first column of the table). </li>
+    <li>Clicking on the column headers will do nothing.</li>
+    <li><font color="red">The other player will not be informed whether you chose Heads or Tails until you have both made your decision. Also, you will not be informed about the other player's decicion until you have both made your decision.</font></li>
+    <br>
+  </ul>
+  <li><b>Interpretation of the baseline payoffs</b></li>
+  <ul>
+    <li>The red entries show your “baseline payoffs”. The black entries are the baseline payoffs of the other player.</li>
+    <li>For example, the upper left cell is reached if you and the other player both choose Heads. In this case, you can earn up to 240 points whereas the other player can earn up to 800 points.</li>
+    <li>The upper right cell is reached if you choose Heads while the other player chooses Tails. In this case, you can earn up to 800 points whereas the other player can earn up to 200 points.</li>
+  <li>Note that there may be subtle changes of the baseline payoffs across rounds.</li>
+  </ul>
+<br>
+
+<li><b>Please answer the following questions on the version shown in the screenshot to show that you have read and understood the information on this page.</b></li>
+
+{{ formfields }}
+</ul>
+
+<p>The next page will explain the remaining details.</p>
+{{ next_button }}
+
+{% endblock %}

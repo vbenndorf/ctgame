@@ -1,0 +1,113 @@
+{% block title %}
+   <b style="color:grey"> How to earn money (2/2)</b>
+{% endblock %}
+
+{% block app_styles %}
+<style>
+
+th {
+    border: 1px solid black;
+    font-size: 10pt;
+    width: 200px;
+    text-align: center;
+    font-weight:bold;
+    background-color: lightgray;
+    }
+
+td {
+    font-size: 10pt;
+    border: 1px solid black;
+    text-align: center;
+    }
+
+table {
+    table-layout: fixed;
+    width: 600px;
+    }
+
+.history td {
+    font-size: 16pt;
+    }
+
+.history th {
+    font-size: 12pt;
+    width: 100px;
+    text-align: center;
+    }
+.frac > span {
+    display: block;
+    padding: 0.1em;
+}
+.frac span.bottom {
+    border-top: thin solid black;
+}
+.frac span.symbol {
+    display: none;
+}
+img {
+  border: 5px solid #888;
+}
+
+.button_replacement {
+  padding-left: 4px;
+  padding-right: 4px;
+  
+  color:red; background-color:#f0c0c0; display:inline-block;
+  font-weight: bold;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<p>Read these instructions carefully. You will again have to answer some questions. </p>
+
+  <p>Here is a screenshot of the screen where you make your decision</p>
+
+  <!-- <img src=https://i.ibb.co/YhXFLmL/screenshot.png> -->
+  <img src="{{ static 'global/screenshot_info.png' }}"/>
+  <br><br>
+
+<b>Description</b>:
+
+<p>So far, we have only talked about the baseline payoffs you may receive, but the actual payments also depend on the time when you make your decision.  </p>
+
+      <ul>
+      <li><b>Discounting</b></li>
+      <ul>
+        <li>In general, you will earn less the later you make your decision.</li>
+        <li> If you decide at the very beginning of a round while the timer on the left side of the screen still shows sixty seconds, you will receive the baseline payoff.</li>
+        <li>If you decide at a later point in time, you will receive the baseline payoff, multiplied with the Payoff percentage indicated on the right side of the screen. The Payoff percentage decreases as the timer runs. </li>
+        <li>For example, if you choose Heads and your opponent chooses Tails, your baseline payoff is 800 points. With a payoff percentage of 75% at the time when you make your choice, you receive 800⋅75% = 600 points.</li>
+        <li>Once the timer reaches zero, the payoff percentage will typically be 20%, but in one block of the experiment, this value is 33.3%.</li>
+        <li>If you make a decision at some point in time, but the other player does not make a decision before the timer reaches zero, you will earn 500 points times the payoff percentage shown when you clicked the button.</li>
+        <li> If neither player makes a decision, both will receive 500 points times the payoff percentage at the end of the round (i.e., 20% or 33.3%). Hence, 100 or 167 points respectively.</li><br>
+      </ul>
+      <li><b>Time freezes</b></li>
+      <ul>
+      <li>In general, the timer ticks down continuously, <font color="red">but there is one exception.</font></li>
+        <li>The timer does not start until five seconds after the beginning of the round. During these five seconds, the “5s time freeze” bar on the left will be active (in green) and the payoff percentage will remain at 100%.  If you choose an action during these initial 5 seconds, you obtain your full baseline payoff. <font color="red"><del>but you do not observe the choice of the other player (in case the other player also chooses an action during these 5 seconds).</del></font><</li>
+        <li><font color="red"><del>If you do not choose an action during the initial 5s freeze time, and the other player chooses an action before you do, the timer will stop for another five seconds, and the 5s freeze time bar will be activated again. The payoff percentage will stay constant during these 5 seconds, so that you can react to the other player’s decision without losing any payoff. </del></font></li>
+        <li><font color="red"><del>If the other player chooses an action within the initial 5s freeze time at the beginning of the round and you do not, the action choice of the other player will be shown to you after these 5 seconds have elapsed. Then another 5s time freeze starts so that you can respond to the other player’s action without losing payoff due to the elapse of time.</del></font></li>
+        <li><font color="red"><del>Your actions are shown in the same way to the other player.</del></font></li>
+        <br>
+
+      </ul>
+
+
+  <li><b>End of a round</b></li>
+  <ul>
+<li>The round finishes once both players have made their decision, or if the timer reaches zero.</li> 
+<li>A “Next button” will appear. Both players have to click their Next button for the experiment to proceed.</li>
+  
+  <li>Please note that both players have to click the <i>Next</i> button for the experiment to proceed.</li>
+</ul>
+
+<br>
+<li><b>Please answer the following questions to show that you have read and understood the information on this page.</b></li>
+
+{{ formfields }}
+
+</ul>
+{{ next_button }}
+
+{% endblock %}
