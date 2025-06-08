@@ -31,13 +31,16 @@ SESSION_CONFIGS = [
         sessId=0000000000, # Replace with your values
     ),
     dict(
-            name='matching_pennies_static',
-            display_name="Matching Pennies (static) game only",
-            app_sequence=['matching_pennies_static'],
-            num_demo_participants=2,
-            periods_per_block=1,
-            real_world_currency_per_point=0.0007,
-            participation_fee = 6,
+        name='matching_pennies_static',
+        display_name="Matching Pennies (static) game only",
+        app_sequence=['matching_pennies_static'],
+        num_demo_participants=2,
+        periods_per_block=1,
+        real_world_currency_per_point=0.0007,
+        participation_fee = 6,
+        expShortName="TestExp",  # Replace with your values
+        expId=0000000000,  # Replace with your values
+        sessId=0000000000,  # Replace with your values
         ),
     dict(
         name='survey',
@@ -56,6 +59,18 @@ SESSION_CONFIGS = [
         expShortName="CTG",
         expId=28, # Replace with your values
         sessId=235, # Replace with your values
+    ),
+    dict(
+        name='experiment_noinfo',
+        display_name="Complete experiment (no information case)",
+        app_sequence=['informed_consent', 'instructions_noinfo', 'matching_pennies_static', 'survey', 'payment'],
+        num_demo_participants=2,
+        periods_per_block=12,
+        real_world_currency_per_point=0.0007,
+        participation_fee=6,
+        expShortName="XYZ", #TODO: update this!
+        expId=29,  #TODO: update this!
+        sessId=236,  #TODO: update this!
     )
 ]
 

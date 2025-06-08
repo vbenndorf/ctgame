@@ -8,11 +8,13 @@ Matching pennies game (static)
 class C(BaseConstants):
     NAME_IN_URL = 'matching_pennies_static'
     PLAYERS_PER_GROUP = 2
-    NUM_ROUNDS = 43
+    NUM_ROUNDS = 53
     B = 200
     C = 800
     PLAYER1_ROLE = 'Player 1'
     PLAYER2_ROLE = 'Player 2'
+    NUM_TRIALS = 5
+    PERIODS_PER_BLOCK = 12
 
 
 class Subsession(BaseSubsession):
@@ -54,23 +56,23 @@ def creating_session(subsession: Subsession):
             participant = player.participant
             participant.treatment = treatment_list  #store randomized list of treatments in participant field which is persistent over all rounds
 
-    if subsession.round_number <= 3: #training rounds
+    if subsession.round_number <= C.NUM_TRIALS: #training rounds
         for player in subsession.get_players():
             player.epsilon = 40
             player.delta = 0.2
-    if 4 <= subsession.round_number <= 13:
+    if C.NUM_TRIALS  < subsession.round_number <= C.NUM_TRIALS + C.PERIODS_PER_BLOCK:
         for player in subsession.get_players():
             player.epsilon = player.participant.treatment[0][0]
             player.delta = player.participant.treatment[0][1]
-    if 14 <= subsession.round_number <= 23:
+    if C.NUM_TRIALS + C.PERIODS_PER_BLOCK < subsession.round_number <= C.NUM_TRIALS + 2*C.PERIODS_PER_BLOCK:
         for player in subsession.get_players():
             player.epsilon = player.participant.treatment[1][0]
             player.delta = player.participant.treatment[1][1]
-    if 24 <= subsession.round_number <= 33:
+    if C.NUM_TRIALS + 2*C.PERIODS_PER_BLOCK < subsession.round_number <= C.NUM_TRIALS + 3*C.PERIODS_PER_BLOCK:
         for player in subsession.get_players():
             player.epsilon = player.participant.treatment[2][0]
             player.delta = player.participant.treatment[2][1]
-    if subsession.round_number >= 34:
+    if subsession.round_number > C.NUM_TRIALS + 3*C.PERIODS_PER_BLOCK:
         for player in subsession.get_players():
             player.epsilon = player.participant.treatment[3][0]
             player.delta = player.participant.treatment[3][1]
@@ -128,7 +130,7 @@ def set_payoffs(group: Group):
                 p1.trial_pay = C.B * factor1
                 p2.trial_pay = C.C * factor2
    
-    if p1.round_number > 3:
+    if p1.round_number > C.NUM_TRIALS:
         p1.payoff = p1.trial_pay
         p2.payoff = p2.trial_pay
 
@@ -138,7 +140,7 @@ def set_payoffs(group: Group):
 class BlockStart(Page):
     @staticmethod
     def is_displayed(player: Player):
-        temp = [1,4,14,24,34]
+        temp = [1,C.NUM_TRIALS+1,C.NUM_TRIALS + C.PERIODS_PER_BLOCK +1,C.NUM_TRIALS + 2*C.PERIODS_PER_BLOCK+1,C.NUM_TRIALS + 3*C.PERIODS_PER_BLOCK+1]
         return any(player.round_number == x for x in temp)
     
     @staticmethod

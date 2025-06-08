@@ -245,13 +245,11 @@ function liveRecv(data) {
                         }
                     }
                 game_over = true;
-                if(beginning_timer == false){
-                    document.getElementById('submit').style.display='inline';
-                    document.getElementById("outer-circle").style.background = "#696969";
-                    document.getElementById("timer").style.color = "#696969";
-                    document.getElementById("timebar").style.display = "none"
-                }
-
+                console.log("submit command.");
+                document.getElementById('submit').style.display='inline';
+                document.getElementById("outer-circle").style.background = "#696969";
+                document.getElementById("timer").style.color = "#696969";
+                document.getElementById("timebar").style.display = "none"
 
                 if(data['player'] == 1) { // player 1 is second mover
                     if (data['penny_side']) {// heads (second move)

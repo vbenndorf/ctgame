@@ -1,11 +1,11 @@
 
-{{ block title }}Results of Round {{ player.round_number }}  {{ endblock }}
+{{ block title }}Results of {{ if player.round_number < 6 }} Trial {{ endif }} Round {{ player.round_number }}  {{ endblock }}
 {{ block content }}
 
-{{ if player.round_number < 4 }} <div style="font-style: italic"> The first 3 rounds are training rounds to familiarize you with the game, and its interface. The payoff in these rounds is hypothetical and will not actually be paid out. In the main part of the experiment, your payments from this round would be as follows. </div> <br>{{ endif }}
+{{ if player.round_number < 6 }} <div style="font-style: italic"> The first 5 rounds are training rounds to familiarize you with the game, and its interface. The payoff in these rounds is hypothetical and will not actually be paid out. In the main part of the experiment, your payments from this round would be as follows. </div> <br>{{ endif }}
 
 
-In this round you {{ if player.time_out == 1 }} did not make a decision during the game{{ else }} chose {{ move }} after {{ time |to1 }} seconds and your opponent {{ if op_time_out }} did not make a move{{ else }} chose {{op_move}}{{ endif }}{{ endif }}.
+In this round you {{ if player.time_out == 1 }} did not make a decision{{ else }} chose {{ move }} after {{ time |to1 }} seconds and your opponent {{ if op_time_out }} did not make a move{{ else }} chose {{op_move}}{{ endif }}{{ endif }}.
 <br>
 This results in a payoff of {{ player.trial_pay }}.
 <br>
