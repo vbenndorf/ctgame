@@ -68,9 +68,9 @@ SESSION_CONFIGS = [
         periods_per_block=12,
         real_world_currency_per_point=0.0007,
         participation_fee=6,
-        expShortName="XYZ", #TODO: update this!
-        expId=29,  #TODO: update this!
-        sessId=236,  #TODO: update this!
+        expShortName="CTG", #TODO: update this!
+        expId=28,  #TODO: update this!
+        sessId=235,  #TODO: update this!
     )
 ]
 
