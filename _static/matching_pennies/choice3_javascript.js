@@ -1,6 +1,6 @@
 
 var start_time = new Date().getTime(); //time at the start of the page; used for time measurements
-let first = true; //checks for first move
+//let first = true; //checks for first move
 choice1 = true; //variable for the first action
 var game_over = false; // flag if the game has ended or not
 //variables for all buttons:
@@ -87,7 +87,6 @@ setTimeout(function(){ //5.005 seconds after the game starts, check if a move in
             document.getElementById('timebar').classList.remove('active-animation'); //additional pause after first pause
             pause_first = timer.pause(); //time object for pause after first move
             if(!i_moved){
-                //document.getElementById("endgame_text2").style.display='none';
                 pause_first_factor = factor.pause();
             }
             pause_first_flag = true;
@@ -110,8 +109,9 @@ setTimeout(function(){ //5.005 seconds after the game starts, check if a move in
 //live receive function
 function liveRecv(data) {
     if (data['type'] == 'button'){
+        //console.log(data)
         if (data['first']) { //first move in the game
-            first = false; //set fist flag to false for the second response
+            //first = false; //set fist flag to false for the second response
             if(beginning_timer == false){
                     pause_first = timer.pause();
                     factor.pause();
@@ -120,12 +120,6 @@ function liveRecv(data) {
                     document.getElementById('timebar').classList.add('active-animation');
                     document.getElementById("outer-circle").style.background = "#696969";
                     document.getElementById("timer").style.color = "#696969";
-                    if(i_moved){
-                        //document.getElementById("endgame_text1").style.display='none';
-                    }
-                    else{
-                        //document.getElementById("endgame_text2").style.display='none';
-                    }
                     setTimeout(function() {
                         if(game_over==false){
                             end_of_stop();
@@ -304,7 +298,6 @@ function liveRecv(data) {
                     //document.getElementById("endgame_text1").style.display='none';
                     //document.getElementById("endgame_text2").style.display='none';
                 }
-
 
                 if(data['player'] == 1) { // player 1 is second mover
                     if (data['penny_side']) {// heads (second move)
@@ -556,12 +549,14 @@ function heads(){ //function called when heads is clicked
     document.getElementById('time_out').value = false;
     document.getElementById('move_in_beginning').value = beginning_timer;//move during the beginning
     document.getElementById('simultaneous').value = simultaneous;
-    if(first) {
-        liveSend({"type": "button", "penny_side": choice, "first": true}) //send information about first or second move and heads or tails to the server
-    }
-    else {
-        liveSend({"type": "button", "penny_side": choice, "first": false})
-    }
+
+    liveSend({"type": "button", "penny_side": choice})
+    //if(first) {
+    //    liveSend({"type": "button", "penny_side": choice, "first": true}) //send information about first or second move and heads or tails to the server
+    //}
+    //else {
+    //    liveSend({"type": "button", "penny_side": choice, "first": false})
+    //}
 }
 
 function tails(){ //similar to heads() above but called when tails is clicked instead
@@ -602,12 +597,13 @@ function tails(){ //similar to heads() above but called when tails is clicked in
     document.getElementById('time_out').value = false;
     document.getElementById('move_in_beginning').value = beginning_timer; //move during the beginning
     document.getElementById('simultaneous').value = simultaneous;
-    if(first==true) {
-        liveSend({"type": "button", "penny_side": choice, "first": true})
-    }
-    else {
-        liveSend({"type": "button", "penny_side": choice, "first": false})
-    }
+    liveSend({"type": "button", "penny_side": choice})
+    //if(first==true) {
+    //    liveSend({"type": "button", "penny_side": choice, "first": true})
+    //}
+    //else {
+    //    liveSend({"type": "button", "penny_side": choice, "first": false})
+    //}
 }
 
 //Timeout function

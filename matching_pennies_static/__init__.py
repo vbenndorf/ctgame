@@ -22,7 +22,7 @@ class Subsession(BaseSubsession):
 
 
 class Group(BaseGroup):
-    pass
+    first_sender_id = models.IntegerField(initial=0)
 
 
 class Player(BasePlayer):
@@ -171,39 +171,18 @@ class Choice_static(Page):
 
     @staticmethod
     def live_method(player: Player, data):
-        if data['type'] == 'button':
-            if data['first']:
-                if data['penny_side']:
-                    if player.id_in_group == 1:
-                        return {1: {"type": "button", "penny_side": True, "player": player.id_in_group, "first": True},
-                                2: {"type": "button", "penny_side": True, "player": player.id_in_group, "first": True}}
-                    else:
-                        return {1: {"type": "button", "penny_side": True, "player": player.id_in_group, "first": True},
-                                2: {"type": "button", "penny_side": True, "player": player.id_in_group, "first": True}}
-                else:
-                    if player.id_in_group == 1:
-                        return {1: {"type": "button", "penny_side": False, "player": player.id_in_group, "first": True},
-                                2: {"type": "button", "penny_side": False, "player": player.id_in_group, "first": True}}
-                    else:
-                        return {1: {"type": "button", "penny_side": False, "player": player.id_in_group, "first": True},
-                                2: {"type": "button", "penny_side": False, "player": player.id_in_group, "first": True}}
-            else:  # not first
-                if data['penny_side']:
-                    if player.id_in_group == 1:
-                        return {1: {"type": "button", "penny_side": True, "player": player.id_in_group, "first": False},
-                                2: {"type": "button", "penny_side": True, "player": player.id_in_group, "first": False}}
-                    else:
-                        return {1: {"type": "button", "penny_side": True, "player": player.id_in_group, "first": False},
-                                2: {"type": "button", "penny_side": True, "player": player.id_in_group, "first": False}}
-                else:
-                    if player.id_in_group == 1:
-                        return {
-                            1: {"type": "button", "penny_side": False, "player": player.id_in_group, "first": False},
-                            2: {"type": "button", "penny_side": False, "player": player.id_in_group, "first": False}}
-                    else:
-                        return {
-                            1: {"type": "button", "penny_side": False, "player": player.id_in_group, "first": False},
-                            2: {"type": "button", "penny_side": False, "player": player.id_in_group, "first": False}}
+        if data['penny_side']:
+            penny_side = True
+        else:
+            penny_side = False
+
+        if player.group.first_sender_id == 0:
+            player.group.first_sender_id = player.id_in_group
+            first = True
+        else:
+            first = False
+        return {1: {"type": "button", "penny_side": penny_side, "player": player.id_in_group, "first": first},
+                2: {"type": "button", "penny_side": penny_side, "player": player.id_in_group, "first": first}}
 
 
 

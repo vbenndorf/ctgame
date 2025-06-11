@@ -1,6 +1,6 @@
 
 var start_time = new Date().getTime(); //time at the start of the page; used for time measurements
-let first = true; //checks for first move
+//let first = true; //checks for first move
 choice1 = true; //variable for the first action
 var game_over = false; // flag if the game has ended or not
 //variables for all buttons:
@@ -75,8 +75,9 @@ setTimeout(function(){ // this function checks if both players moved in the firs
 //live receive function
 function liveRecv(data) {
     if (data['type'] == 'button'){
+        //console.log(data)
         if (data['first']) { //first move in the game
-            first = false; //set fist flag to false for the second response
+            //first = false; //set fist flag to false for the second response
             if(beginning_timer == false){
                     if(js_vars.player_id == data['player']) { //if you are the first mover
                         factor.pause();
@@ -509,12 +510,13 @@ function heads(){ //function called when heads is clicked
     document.getElementById('time_out').value = false;
     document.getElementById('move_in_beginning').value = beginning_timer;//move during the beginning
     document.getElementById('simultaneous').value = simultaneous;
-    if(first) {
-        liveSend({"type": "button", "penny_side": choice, "first": true}) //send information about first or second move and heads or tails to the server
-    }
-    else {
-        liveSend({"type": "button", "penny_side": choice, "first": false})
-    }
+    liveSend({"type": "button", "penny_side": choice})
+    //if(first) {
+    //    liveSend({"type": "button", "penny_side": choice, "first": true}) //send information about first or second move and heads or tails to the server
+    //}
+    //else {
+    //    liveSend({"type": "button", "penny_side": choice, "first": false})
+    //}
 }
 
 function tails(){ //similar to heads() above but called when tails is clicked instead
@@ -555,12 +557,13 @@ function tails(){ //similar to heads() above but called when tails is clicked in
     document.getElementById('time_out').value = false;
     document.getElementById('move_in_beginning').value = beginning_timer; //move during the beginning
     document.getElementById('simultaneous').value = simultaneous;
-    if(first==true) {
-        liveSend({"type": "button", "penny_side": choice, "first": true})
-    }
-    else {
-        liveSend({"type": "button", "penny_side": choice, "first": false})
-    }
+    liveSend({"type": "button", "penny_side": choice})
+    //if(first==true) {
+    //    liveSend({"type": "button", "penny_side": choice, "first": true})
+    //}
+    //else {
+    //    liveSend({"type": "button", "penny_side": choice, "first": false})
+    //}
 }
 
 //Timeout function
