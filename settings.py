@@ -71,6 +71,24 @@ SESSION_CONFIGS = [
         expShortName="CTG", #TODO: update this!
         expId=28,  #TODO: update this!
         sessId=235,  #TODO: update this!
+    ),
+    dict(
+        name='ffm_info',
+        display_name="Complete experiment (FFM)",
+        app_sequence=['informed_consent', 'instructions','matching_pennies','survey', 'payment_ffm'],
+        num_demo_participants=2,
+        periods_per_block=12,
+        real_world_currency_per_point=0.0007,
+        participation_fee = 6,
+    ),
+    dict(
+        name='ffm_noinfo',
+        display_name="Complete experiment (no information case) (FFM)",
+        app_sequence=['informed_consent', 'instructions_noinfo', 'matching_pennies_static', 'survey', 'payment_ffm'],
+        num_demo_participants=2,
+        periods_per_block=12,
+        real_world_currency_per_point=0.0007,
+        participation_fee=6,
     )
 ]
 
